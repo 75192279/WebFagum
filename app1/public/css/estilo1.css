@@ -1,0 +1,16 @@
+.buttonPrimary{
+    background: #741313;
+    color: #fff;
+    border: 8px solid #999999;
+    margin: 30px 0 0 0;
+    padding: 10px;
+}
+#buttonPrimary{
+
+    background-color:  #ffff00;
+    color: #888888;
+
+}
+.inputMargin{
+    margin: 15px 0;
+}

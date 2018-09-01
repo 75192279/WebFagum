@@ -3,10 +3,18 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Example Component</div>
-
+                    <div class="panel-heading">Registrar</div>
                     <div class="panel-body">
-                        I'm an example component!
+                        <form method="POST">
+                            <input type="text" placeholder="Usuario" class="form-control inputMargin">
+                            <input type="email" placeholder="Correo" class="form-control inputMargin">
+                            <input type="password" placeholder="Password" class="form-control inputMargin">
+                            <div class="text-center">
+                                 <button type="button" v-on:click="registrar()" class="btn btn-danger">Enviar</button>
+                                 <button type="button" v-on:click="registro()" class="btn btn-danger">resgistro</button>
+                                <!--<button type="button" class="btn btn-success">Prueba1</button>-->
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -15,9 +23,28 @@
 </template>
 
 <script>
+    import toastr from "toastr"
+    import axios from "axios"
+    
     export default {
         mounted() {
             console.log('Component mounted.')
+            
+            toastr.error('Al guardar', 'Error')
+            toastr.warning('My name is Inigo Montoya. You killed my father, prepare to die!')
+        },
+        create(){
+            
+        },
+        methods: {
+            registrar: function(){
+                toastr.success('Al guardar', 'Exito')
+            },
+            registro: function(){
+               toastr.error('Al guardar', 'Error') 
+            },
+
         }
+        
     }
 </script>
