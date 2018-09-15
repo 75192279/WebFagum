@@ -14,8 +14,8 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        $usuario=Usuario::all()->get();
-        return json_encode($usuario);
+        
+        return "hola";
     }
 
     /**
@@ -36,7 +36,12 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $usuario=new Usuario();
+        $usuario->usuario=$request->usuario;
+        $usuario->correo=$request->correo;
+        $usuario->password=$request->password;
+        $usuario->save();
+        return json_encode($usuario);
     }
 
     /**

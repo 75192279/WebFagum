@@ -12,10 +12,15 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home.index');
 });
 
 Route::get('login', function () {
     return view('login.index');
 });
-Route::get('usuario','UsuarioController@index');
+
+Route::resource('/usuario','UsuarioController');
+
+Route::get('/nosotros', function () {
+    return view('home.nosotros');
+});
