@@ -4,11 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Usuario extends Model
+class Musuario extends Model
 {
-    protected $table="users";
+    protected $table="usuario";
+    protected $primarykey="id";
     protected $fillable = [
-        'usuario', 'correo', 'password','created_at','updated_at','idTipo','status'
+        'usuario', 'correo', 'password','idPersona',,'idRol','estado'
     ];
 
     /**
