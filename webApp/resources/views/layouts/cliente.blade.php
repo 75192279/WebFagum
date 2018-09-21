@@ -106,7 +106,7 @@
 
 				<!-- Header Icon -->
 				<div class="header-icons">
-					<a href="#" class="header-wrapicon1 dis-block">
+					<a href="/login" class="header-wrapicon1 dis-block">
 						<img src="/cliente/images/icons/icon-header-01.png" class="header-icon1" alt="ICON">
 					</a>
 
@@ -204,7 +204,7 @@
 			<div class="btn-show-menu">
 				<!-- Header Icon mobile -->
 				<div class="header-icons-mobile">
-					<a href="#" class="header-wrapicon1 dis-block">
+					<a href="/login" class="header-wrapicon1 dis-block">
 						<img src="/cliente/images/icons/icon-header-01.png" class="header-icon1" alt="ICON">
 					</a>
 

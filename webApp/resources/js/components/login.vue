@@ -24,8 +24,8 @@
                         <h1>Ingresar</h1>
                     </div>    
                     <form v-on:submit.prevent="register">
-                        <input type="text" id="login" class="inputLogin fadeIn second" v-model="formDataSend.usuario" placeholder="usuario">
-                        <input type="email" id="login" class="inputLogin fadeIn second" v-model="formDataSend.correo" placeholder="correo">
+                        <input type="text" id="usuario" class="inputLogin fadeIn second" v-model="formDataSend.usuario" placeholder="usuario">
+                        <input type="email" id="correo" class="inputLogin fadeIn second" v-model="formDataSend.correo" placeholder="correo">
                         <input type="password" id="password" class="inputLogin fadeIn third" v-model="formDataSend.password" placeholder="contraseña">
                         <input type="password" id="password_confirm" class="inputLogin fadeIn third" v-model="formDataSend.password_confirm" placeholder="confirmar contraseña">
                         <input type="submit" class="fadeIn fourth" value="Registrarse">

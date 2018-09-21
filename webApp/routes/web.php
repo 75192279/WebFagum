@@ -22,6 +22,7 @@ Route::get('/login', function () {
 
 Route::post('/login-autenticate','Auth\LoginController@login');
 Route::post('/login-register','Auth\RegisterController@create');
+Route::get('/logout','Auth\LoginController@logout');
 
 Route::resource('/usuario','UsuarioController');
 

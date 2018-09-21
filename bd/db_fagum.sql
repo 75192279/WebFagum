@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 4.7.4
+-- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-09-2018 a las 19:50:55
--- Versión del servidor: 10.1.16-MariaDB
--- Versión de PHP: 5.6.24
+-- Tiempo de generación: 21-09-2018 a las 23:13:26
+-- Versión del servidor: 10.1.28-MariaDB
+-- Versión de PHP: 7.1.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -30,7 +32,7 @@ CREATE TABLE `persona` (
   `id` int(11) NOT NULL,
   `nombre` varchar(255) COLLATE utf8_spanish2_ci DEFAULT NULL,
   `apellido_paterno` varchar(255) COLLATE utf8_spanish2_ci DEFAULT NULL,
-  `apellidos_materno` varchar(255) COLLATE utf8_spanish2_ci DEFAULT NULL,
+  `apellido_materno` varchar(255) COLLATE utf8_spanish2_ci DEFAULT NULL,
   `fecha_nacimiento` date DEFAULT NULL,
   `genero` char(2) COLLATE utf8_spanish2_ci DEFAULT NULL,
   `tipo_documento` varchar(15) COLLATE utf8_spanish2_ci DEFAULT NULL,
@@ -38,6 +40,13 @@ CREATE TABLE `persona` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `persona`
+--
+
+INSERT INTO `persona` (`id`, `nombre`, `apellido_paterno`, `apellido_materno`, `fecha_nacimiento`, `genero`, `tipo_documento`, `numero_documento`, `created_at`, `updated_at`) VALUES
+(1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2018-09-22 01:12:45', '2018-09-22 01:12:45');
 
 -- --------------------------------------------------------
 
@@ -72,20 +81,28 @@ CREATE TABLE `rol` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `usuario`
+-- Estructura de tabla para la tabla `users`
 --
 
-CREATE TABLE `usuario` (
+CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `usuario` varchar(30) COLLATE utf8_spanish2_ci NOT NULL,
   `correo` varchar(255) COLLATE utf8_spanish2_ci NOT NULL,
   `password` varchar(255) COLLATE utf8_spanish2_ci NOT NULL,
   `estado` tinyint(4) NOT NULL DEFAULT '0',
+  `remember_token` varchar(255) COLLATE utf8_spanish2_ci NOT NULL,
   `idRol` int(11) NOT NULL,
   `idPersona` int(11) NOT NULL,
-  `created-at` int(11) NOT NULL,
-  `updated-at` int(11) NOT NULL
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `users`
+--
+
+INSERT INTO `users` (`id`, `usuario`, `correo`, `password`, `estado`, `remember_token`, `idRol`, `idPersona`, `created_at`, `updated_at`) VALUES
+(1, 'admin', 'admin@gmail.com', '$2y$10$2lIGqEjEz6/xjNrb0rxwpe4fQXs1gw2HUs.xLnfDLQgStpJdSzqmS', 1, '', 3, 1, '2018-09-22 01:12:46', '2018-09-22 01:12:46');
 
 --
 -- Índices para tablas volcadas
@@ -110,9 +127,9 @@ ALTER TABLE `rol`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `usuario`
+-- Indices de la tabla `users`
 --
-ALTER TABLE `usuario`
+ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -123,22 +140,27 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `persona`
 --
 ALTER TABLE `persona`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `rol`
 --
 ALTER TABLE `rol`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
--- AUTO_INCREMENT de la tabla `usuario`
+-- AUTO_INCREMENT de la tabla `users`
 --
-ALTER TABLE `usuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
