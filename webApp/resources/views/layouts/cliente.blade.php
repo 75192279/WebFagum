@@ -74,7 +74,7 @@
 					<nav class="menu">
 						<ul class="main_menu">
 							<li>
-								<a href="index.html">Inicio</a>>
+								<a href="index.html">Inicio</a>
 							</li>
 
 							<li>

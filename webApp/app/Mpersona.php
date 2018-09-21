@@ -8,9 +8,8 @@ class Mpersona extends Model
 {
     protected $table="persona";
     protected $primarykey="id";
-    protected $timestamps="true";
     protected $fillable = [
-        'nombre','apellidos_materno','apellido_paterno','fecha_nacimiento',
+        'nombre','apellido_materno','apellido_paterno','fecha_nacimiento',
         'numero_documento','tipo_documento','genero','created_at','updated_at'
     ];
 
@@ -19,7 +18,5 @@ class Mpersona extends Model
      *
      * @var array
      */
-    protected $hidden = [
-        'password',
-    ];
+    public $timestamps = true;
 }

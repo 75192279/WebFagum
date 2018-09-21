@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Musuario extends Model
 {
-    protected $table="usuario";
+    protected $table="users";
     protected $primarykey="id";
     protected $fillable = [
-        'usuario', 'correo', 'password','idPersona',,'idRol','estado'
+        'usuario', 'correo', 'password','idPersona','idRol','estado'
     ];
 
     /**
@@ -20,4 +20,5 @@ class Musuario extends Model
     protected $hidden = [
         'password',
     ];
+    
 }

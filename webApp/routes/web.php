@@ -11,14 +11,17 @@
 |
 */
 
-Route::get('/', 'HomeController@index');
+Route::get('/', 'HomeController@index')->name('/');
 Route::get('/producto', 'HomeController@producto');
 Route::get('/carrito', 'HomeController@carrito');
 Route::get('/contacto', 'HomeController@contacto');
 
-Route::get('login', function () {
-    return view('login.index');
+Route::get('/login', function () {
+    return view('login.login');
 });
+
+Route::post('/login-autenticate','Auth\LoginController@login');
+Route::post('/login-register','Auth\RegisterController@create');
 
 Route::resource('/usuario','UsuarioController');
 

@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
+use App\Musuario;
+use App\Mpersona;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -61,12 +63,16 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(array $data)
+    protected function create(Request $request)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+        $persona=new Mpersona();
+        $persona->save();
+        return Musuario::create([
+            'correo' => $request->correo,
+            'usuario' => $request->usuario,
+            'idRol' => 3,
+            'idPersona'=>$persona->id,
+            'password' => Hash::make($request->password),
         ]);
     }
 }
