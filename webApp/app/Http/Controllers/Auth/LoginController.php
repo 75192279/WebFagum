@@ -7,10 +7,16 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Musuario;
 use Redirect;
+//use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Mpersona;
 class LoginController extends Controller
 {
+    //protected $redirectTo = '/admin';
 
+    public function __construct($auth=null){
+        $this->auth=\Auth::guard($auth);
+        $this->middleware('guest',['except'=>'logout']);
+    }
     protected function validateLogin(Request $request){
         $this->validate($request,[
             'correo' => 'required|string',
@@ -18,20 +24,19 @@ class LoginController extends Controller
         ]);
 
     }
-
+    public function viewLogin(Request $request){
+        return view('login.login');
+    }
     public function logout(Request $request){
         Auth::logout();
         $request->session()->invalidate();
         return redirect('/');
     }
-    public function login(Request $request){
-        $this->validateLogin($request);        
+    public function login(Request $request){   
         if (Auth::attempt(['correo' => $request->correo,'password' => $request->password,'estado'=>1])){
            return Auth::user();
         }
-
-        return back()
-        ->withErrors(['correo' => trans('Credenciales incorrectos')])
-        ->withInput(request(['correo']));
+        
+        return  $request->correo;
     }
 }

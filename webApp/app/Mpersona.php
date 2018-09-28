@@ -10,7 +10,7 @@ class Mpersona extends Model
     protected $primarykey="id";
     protected $fillable = [
         'nombre','apellido_materno','apellido_paterno','fecha_nacimiento',
-        'numero_documento','tipo_documento','genero','created_at','updated_at'
+        'numero_documento','tipo_documento','genero','direccion','telefono','created_at','updated_at'
     ];
 
     /**

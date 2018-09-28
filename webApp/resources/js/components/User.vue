@@ -18,9 +18,9 @@
                             <div class="col-md-6">
                                 <div class="input-group">
                                     <select class="form-control col-md-3" v-model="criterio">
-                                      <option value="nombre">Nombre</option>
-                                      <option value="num_documento">Documento</option>
-                                      <option value="email">Email</option>
+                                      <option value="persona.nombre">Nombre</option>
+                                      <option value="numero_documento">Documento</option>
+                                      <option value="correo">Correo</option>
                                       <option value="telefono">Teléfono</option>
                                     </select>
                                     <input type="text" v-model="buscar" @keyup.enter="listarPersona(1,buscar,criterio)" class="form-control" placeholder="Texto a buscar">
@@ -38,7 +38,7 @@
                                     <th>Número</th>
                                     <th>Dirección</th>
                                     <th>Teléfono</th>
-                                    <th>Email</th>
+                                    <th>Correo</th>
                                     <th>Usuario</th>
                                     <th>Rol</th>
                                 </tr>
@@ -49,7 +49,7 @@
                                         <button type="button" @click="abrirModal('persona','actualizar',persona)" class="btn btn-warning btn-sm">
                                           <i class="icon-pencil"></i>
                                         </button> &nbsp;
-                                        <template v-if="persona.condicion">
+                                        <template v-if="persona.estado">
                                             <button type="button" class="btn btn-danger btn-sm" @click="desactivarUsuario(persona.id)">
                                                 <i class="icon-trash"></i>
                                             </button>
@@ -61,12 +61,12 @@
                                         </template>
                                     </td>
                                     <td v-text="persona.nombre"></td>
-                                    <td v-text="persona.apellidos"></td>
+                                    <td>{{persona.apellido_paterno+" "+persona.apellido_materno}}</td>
                                     <td v-text="persona.tipo_documento"></td>
-                                    <td v-text="persona.num_documento"></td>
+                                    <td v-text="persona.numero_documento"></td>
                                     <td v-text="persona.direccion"></td>
                                     <td v-text="persona.telefono"></td>
-                                    <td v-text="persona.email"></td>
+                                    <td v-text="persona.correo"></td>
                                     <td v-text="persona.usuario"></td>
                                     <td v-text="persona.rol"></td>
                                 </tr>                                
@@ -99,90 +99,136 @@
                               <span aria-hidden="true">×</span>
                             </button>
                         </div>
-                        <div class="modal-body">
-                            <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
-                                <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="text-input">Nombre(*)</label>
-                                    <div class="col-md-9">
-                                        <input type="text" v-model="nombre" class="form-control" placeholder="Nombre de la persona">                                        
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="text-input">Apellidos(*)</label>
-                                    <div class="col-md-9">
-                                        <input type="text" v-model="apellidos" class="form-control" placeholder="Apellidos de la persona">                                        
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="text-input">Tipo documento</label>
-                                    <div class="col-md-9">
-                                        <select v-model="tipo_documento" class="form-control">
-                                            <option value="DNI">DNI</option>
-                                            <option value="RUC">RUC</option>
-                                            <option value="CEDULA">CEDULA</option>
-                                            <option value="PASS">PASS</option>
-                                        </select>                                        
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="email-input">Número documento</label>
-                                    <div class="col-md-9">
-                                        <input type="email" v-model="num_documento" class="form-control" placeholder="Número de documento">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="email-input">Dirección</label>
-                                    <div class="col-md-9">
-                                        <input type="email" v-model="direccion" class="form-control" placeholder="Dirección">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="email-input">Teléfono</label>
-                                    <div class="col-md-9">
-                                        <input type="email" v-model="telefono" class="form-control" placeholder="Teléfono">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="email-input">Email</label>
-                                    <div class="col-md-9">
-                                        <input type="email" v-model="email" class="form-control" placeholder="Email">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="email-input">Role</label>
-                                    <div class="col-md-9">
-                                        <select v-model="idrol" class="form-control">
-                                            <option value="0" disabled>Seleccione</option>
-                                            <option v-for="role in arrayRol" :key="role.id" :value="role.id" v-text="role.nombre"></option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="email-input">Usuario</label>
-                                    <div class="col-md-9">
-                                        <input type="text" v-model="usuario" class="form-control" placeholder="Nombre del usuario">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="email-input">password</label>
-                                    <div class="col-md-9">
-                                        <input type="password" v-model="password" class="form-control" placeholder="password del usuario">
-                                    </div>
-                                </div>
-                                <div v-show="errorPersona" class="form-group row div-error">
-                                    <div class="text-center text-error">
-                                        <div v-for="error in errorMostrarMsjPersona" :key="error" v-text="error">
+                        <div v-if="!next">
+                            <div class="modal-body">
+                                <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+                                        <div class="form-group row">
+                                            <label class="col-md-3 form-control-label" for="text-input">Nombre(*)</label>
+                                            <div class="col-md-9">
+                                                <input type="text" v-model="nombre" class="form-control" placeholder="Nombre de la persona">                                        
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-3 form-control-label" for="text-input">Apellido Paterno(*)</label>
+                                            <div class="col-md-9">
+                                                <input type="text" v-model="apellidoPaterno" class="form-control" placeholder="Apellido paterno de la persona">                                        
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-3 form-control-label" for="text-input">Apellidos Materno(*)</label>
+                                            <div class="col-md-9">
+                                                <input type="text" v-model="apellidoMaterno" class="form-control" placeholder="Apellido materno de la persona">                                        
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-3 form-control-label" for="text-input">Tipo documento</label>
+                                            <div class="col-md-9">
+                                                <select v-model="tipo_documento" class="form-control">
+                                                    <option value="DNI">DNI</option>
+                                                    <option value="RUC">RUC</option>
+                                                    <option value="CEDULA">CEDULA</option>
+                                                    <option value="PASS">PASS</option>
+                                                </select>                                        
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-3 form-control-label" for="email-input">Número documento</label>
+                                            <div class="col-md-9">
+                                                <input type="email" v-model="num_documento" class="form-control" placeholder="Número de documento">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-3 form-control-label" for="email-input">Dirección</label>
+                                            <div class="col-md-9">
+                                                <input type="email" v-model="direccion" class="form-control" placeholder="Dirección">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-3 form-control-label" for="email-input">Teléfono</label>
+                                            <div class="col-md-9">
+                                                <input type="email" v-model="telefono" class="form-control" placeholder="Teléfono">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-3 form-control-label" for="email-input">Role</label>
+                                            <div class="col-md-9">
+                                                <select v-model="idrol" class="form-control">
+                                                    <option value="0" disabled>Seleccione</option>
+                                                    <option v-for="role in arrayRol" :key="role.id" :value="role.id" v-text="role.nombre"></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    
+                                    
+                                    <div v-show="errorPersona" class="form-group row div-error">
+                                        <div class="text-center text-error">
+                                            <div v-for="error in errorMostrarMsjPersona" :key="error" v-text="error">
 
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
 
-                            </form>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" @click="cerrarModal()">Cerrar</button>
+                                <button type="button" class="btn btn-primary" @click="nextPage()">Seguiente</button>
+                            </div>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" @click="cerrarModal()">Cerrar</button>
-                            <button type="button" v-if="tipoAccion==1" class="btn btn-primary" @click="registrarPersona()">Guardar</button>
-                            <button type="button" v-if="tipoAccion==2" class="btn btn-primary" @click="actualizarPersona()">Actualizar</button>
+                         <div v-if="next">
+                             <div class="modal-body">
+                                <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+                                    
+                                        <div class="form-group row">
+                                            <label class="col-md-3 form-control-label" for="email-input">Fecha de nacimiento</label>
+                                            <div class="col-md-9">
+                                                <input type="date" v-model="fechaNacimiento" class="form-control" placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-3 form-control-label" for="email-input">Genero</label>
+                                            <div class="col-md-9">
+                                                <input type="radio" id="masculino" value="M" v-model="genero">
+                                                <label for="masculino">Masculino</label>
+                                                <input type="radio" id="femenino" value="F" v-model="genero">
+                                                <label for="femenino">Femenino</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-3 form-control-label" for="email-input">Usuario</label>
+                                            <div class="col-md-9">
+                                                <input type="text" v-model="usuario" class="form-control" placeholder="Nombre del usuario">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-3 form-control-label" for="email-input">Email</label>
+                                            <div class="col-md-9">
+                                                <input type="email" v-model="email" class="form-control" placeholder="Email">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-3 form-control-label" for="email-input">password</label>
+                                            <div class="col-md-9">
+                                                <input type="password" v-model="password" class="form-control" placeholder="password del usuario">
+                                            </div>
+                                        </div>
+                                    
+                                    <div v-show="errorPersona" class="form-group row div-error">
+                                        <div class="text-center text-error">
+                                            <div v-for="error in errorMostrarMsjPersona" :key="error" v-text="error">
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" @click="cerrarModal()">Cerrar</button>
+                                <button type="button" class="btn btn-primary" @click="nextPage()">{{nameNextPage}}</button>
+                                <button type="button" v-if="tipoAccion==1" class="btn btn-success" @click="registrarPersona()">Guardar</button>
+                                <button type="button" v-if="tipoAccion==2" class="btn btn-primary" @click="actualizarPersona()">Actualizar</button>
+                            </div>
                         </div>
                     </div>
                     <!-- /.modal-content -->
@@ -199,7 +245,8 @@
             return {
                 persona_id: 0,
                 nombre : '',
-                apellidos:'',
+                apellidoPaterno:'',
+                apellidoMaterno:'',
                 tipo_documento : '',
                 num_documento : '',
                 direccion : '',
@@ -208,6 +255,8 @@
                 usuario: '',
                 password:'',
                 idrol: '',
+                genero: 'M',
+                fechaNacimiento:'',
                 arrayPersona : [],
                 arrayRol : [],
                 modal : 0,
@@ -224,8 +273,10 @@
                     'to' : 0,
                 },
                 offset : 3,
-                criterio : 'nombre',
-                buscar : ''
+                criterio : 'persona.nombre',
+                buscar : '',
+                next: false,
+                nameNextPage: "Seguiente"
             }
         },
         computed:{
@@ -258,9 +309,18 @@
             }
         },
         methods : {
+            nextPage: function(){
+                this.next=!this.next;
+                if(this.next==true){
+                    this.nameNextPage="Atras"
+                }
+                else{
+                    this.nameNextPage="Seguiente"
+                }
+            },
             listarPersona (page,buscar,criterio){
                 let me=this;
-                var url= '/user?page=' + page + '&buscar='+ buscar + '&criterio='+ criterio;
+                var url= '/dashboard/user?page=' + page + '&buscar='+ buscar + '&criterio='+ criterio;
                 axios.get(url).then(function (response) {
                     var respuesta= response.data;
                     me.arrayPersona = respuesta.personas.data;
@@ -272,7 +332,7 @@
             },
             selectRol(){
                 let me=this;
-                var url= '/rol/selectRol';
+                var url= '/dashboard/rol/selectRol';
                 axios.get(url).then(function (response) {
                     //console.log(response);
                     var respuesta= response.data;
@@ -297,15 +357,18 @@
                 
                 let me = this;
 
-                axios.post('/user/registrar',{
+                axios.post('/dashboard/user/register',{
                     'nombre': this.nombre,
-                    'apellidos': this.apellidos,
+                    'apellido_paterno': this.apellidoPaterno,
+                    'apellido_materno': this.apellidoMaterno,
                     'tipo_documento': this.tipo_documento,
                     'num_documento' : this.num_documento,
                     'direccion' : this.direccion,
                     'telefono' : this.telefono,
-                    'email' : this.email,
+                    'correo' : this.email,
                     'idrol' : this.idrol,
+                    'genero': this.genero,
+                    'fecha_nacimiento':this.fechaNacimiento,
                     'usuario': this.usuario,
                     'password': this.password
 
@@ -323,15 +386,18 @@
                 
                 let me = this;
 
-                axios.put('/user/actualizar',{
+                axios.put('/dashboard/user/update',{
                     'nombre': this.nombre,
-                    'apellidos': this.apellidos,
+                    'apellido_paterno': this.apellidoPaterno,
+                    'apellido_materno': this.apellidoMaterno,
                     'tipo_documento': this.tipo_documento,
                     'num_documento' : this.num_documento,
                     'direccion' : this.direccion,
                     'telefono' : this.telefono,
-                    'email' : this.email,
+                    'correo' : this.email,
                     'idrol' : this.idrol,
+                    'genero': this.genero,
+                    'fecha_nacimiento':this.fechaNacimiento,
                     'usuario': this.usuario,
                     'password': this.password,
                     'id': this.persona_id
@@ -347,7 +413,8 @@
                 this.errorMostrarMsjPersona =[];
 
                 if (!this.nombre) this.errorMostrarMsjPersona.push("El nombre de la pesona no puede estar vacío.");
-                if (!this.apellidos) this.errorMostrarMsjPersona.push("El apellido de la pesona no puede estar vacío.");
+                if (!this.apellidoPaterno) this.errorMostrarMsjPersona.push("El apellido paterno de la pesona no puede estar vacío.");
+                if (!this.apellidoMaterno) this.errorMostrarMsjPersona.push("El apellido materno de la pesona no puede estar vacío.");
                 if (!this.usuario) this.errorMostrarMsjPersona.push("El nombre de usuario no puede estar vacío.");
                 if (!this.password) this.errorMostrarMsjPersona.push("La password del usuario no puede estar vacía.");
                 if (this.idrol==0) this.errorMostrarMsjPersona.push("Seleccione una Role.");
@@ -359,7 +426,8 @@
                 this.modal=0;
                 this.tituloModal='';
                 this.nombre='';
-                this.apellidos='';
+                this.apellidoPaterno='';
+                this.apellidoMaterno='';
                 this.tipo_documento='DNI';
                 this.num_documento='';
                 this.direccion='';
@@ -381,8 +449,10 @@
                                 this.modal = 1;
                                 this.tituloModal = 'Registrar Usuario';
                                 this.nombre= '';
+                                this.apellidoPaterno='';
+                                this.apellidoMaterno='';
                                 this.tipo_documento='DNI';
-                                this.num_documento='';
+                                this.num_documento='    ';
                                 this.direccion='';
                                 this.telefono='';
                                 this.email='';
@@ -400,14 +470,16 @@
                                 this.tipoAccion=2;
                                 this.persona_id=data['id'];
                                 this.nombre = data['nombre'];
+                                this.apellidoPaterno=data['apellido_paterno'];
+                                this.apellidoMaterno=data['apellido_materno'];
                                 this.tipo_documento = data['tipo_documento'];
-                                this.num_documento = data['num_documento'];
+                                this.num_documento = data['numero_documento'];
                                 this.direccion = data['direccion'];
                                 this.telefono = data['telefono'];
-                                this.email = data['email'];
+                                this.email = data['correo'];
                                 this.usuario = data['usuario'];
                                 this.password=data['password'];
-                                this.idrol=data['idrol'];
+                                this.idrol=data['idRol'];
                                 break;
                             }
                         }
@@ -431,7 +503,7 @@
                 if (result.value) {
                     let me = this;
 
-                    axios.put('/user/desactivar',{
+                    axios.put('/dashboard/user/desactivar',{
                         'id': id
                     }).then(function (response) {
                         me.listarPersona(1,'','nombre');
@@ -470,7 +542,7 @@
                 if (result.value) {
                     let me = this;
 
-                    axios.put('/user/activar',{
+                    axios.put('/dashboard/user/activar',{
                         'id': id
                     }).then(function (response) {
                         me.listarPersona(1,'','nombre');
@@ -506,7 +578,7 @@
     .mostrar{
         display: list-item !important;
         opacity: 1 !important;
-        position: absolute !important;
+        position: fixed !important;
         background-color: #3c29297a !important;
     }
     .div-error{

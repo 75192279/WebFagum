@@ -3,7 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Usuario;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use App\Musuario;
+use App\Mpersona;
+use Auth;
+use Redirect;
 
 class UsuarioController extends Controller
 {
@@ -12,10 +17,37 @@ class UsuarioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        //if (!$request->ajax()) return redirect('/');
+
+        $buscar = $request->buscar;
+        $criterio = $request->criterio;
         
-        return "hola";
+        if ($buscar==''){
+            $personas = Musuario::join('persona','users.idPersona','=','persona.id')
+            ->join('rol','users.idrol','=','rol.id')
+            ->select('users.id','persona.nombre', 'persona.apellido_paterno', 'persona.apellido_materno', 'persona.fecha_nacimiento', 'persona.genero','persona.tipo_documento','persona.numero_documento','persona.direccion','persona.telefono','users.usuario','users.correo','users.estado','users.idRol','rol.nombre as rol')
+            ->orderBy('persona.id', 'desc')->paginate(3);
+        }
+        else{
+            $personas = Musuario::join('persona','users.idPersona','=','persona.id')
+            ->join('rol','users.idRol','=','rol.id')
+            ->select('users.id','persona.nombre', 'persona.apellido_paterno', 'persona.apellido_materno', 'persona.fecha_nacimiento', 'persona.genero','persona.tipo_documento','persona.numero_documento','persona.direccion','persona.telefono','users.usuario','users.correo','users.estado','users.idRol','rol.nombre as rol')
+            ->where($criterio, 'like', '%'. $buscar . '%')->orderBy('id', 'desc')->paginate(3);
+        }
+        
+        return [
+            'pagination' => [
+                'total'        => $personas->total(),
+                'current_page' => $personas->currentPage(),
+                'per_page'     => $personas->perPage(),
+                'last_page'    => $personas->lastPage(),
+                'from'         => $personas->firstItem(),
+                'to'           => $personas->lastItem(),
+            ],
+            'personas' => $personas
+        ];
     }
 
     /**
@@ -36,12 +68,36 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        $usuario=new Usuario();
-        $usuario->usuario=$request->usuario;
-        $usuario->correo=$request->correo;
-        $usuario->password=$request->password;
-        $usuario->save();
-        return json_encode($usuario);
+        if (!$request->ajax()) return redirect('/');
+        try{
+            DB::beginTransaction();
+
+            $persona = new Mpersona();
+            $persona->nombre = $request->nombre;
+            $persona->apellido_paterno = $request->apellido_paterno;
+            $persona->apellido_materno = $request->apellido_materno;
+            $persona->tipo_documento = $request->tipo_documento;
+            $persona->numero_documento = $request->num_documento;
+            $persona->fecha_nacimiento = $request->fecha_nacimiento;
+            $persona->genero = $request->genero;
+            $persona->direccion = $request->direccion;
+            $persona->telefono = $request->telefono;
+            $persona->save();
+
+            $user = new Musuario();
+            $user->id = $persona->id;
+            $user->idrol = $request->idrol;
+            $user->usuario = $request->usuario;
+            $user->correo = $request->correo;
+            $user->idPersona = $persona->id;
+            $user->password = bcrypt( $request->password);
+            $user->estado = '1';            
+            $user->save();
+
+            DB::commit();
+        } catch (Exception $e){
+            DB::rollBack();
+        }
     }
 
     /**
@@ -73,9 +129,37 @@ class UsuarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        
+        if (!$request->ajax()) return redirect('/');
+
+        try{
+            DB::beginTransaction();
+
+            $user = Musuario::findOrFail($request->id);
+            $persona = Mpersona::findOrFail($user->idPersona);
+            $persona->nombre = $request->nombre;
+            $persona->apellido_paterno = $request->apellido_paterno;
+            $persona->apellido_materno = $request->apellido_materno;
+            $persona->tipo_documento = $request->tipo_documento;
+            $persona->numero_documento = $request->num_documento;
+            $persona->fecha_nacimiento = $request->fecha_nacimiento;
+            $persona->genero = $request->genero;
+            $persona->direccion = $request->direccion;
+            $persona->telefono = $request->telefono;
+            $persona->save();
+
+            $user->idRol = $request->idrol;
+            $user->usuario = $request->usuario;
+            $user->correo = $request->correo;
+            $user->password = bcrypt( $request->password);
+            $user->estado = '1'; 
+            $user->save();
+
+            DB::commit();
+        } catch (Exception $e){
+            DB::rollBack();
+        }
     }
 
     /**
@@ -87,5 +171,20 @@ class UsuarioController extends Controller
     public function destroy($id)
     {
         
+    }
+    public function desactivar(Request $request)
+    {
+        if (!$request->ajax()) return redirect('/');
+        $user = Musuario::findOrFail($request->id);
+        $user->estado = '0';
+        $user->save();
+    }
+
+    public function activar(Request $request)
+    {
+        if (!$request->ajax()) return redirect('/');
+        $user = Musuario::findOrFail($request->id);
+        $user->estado = '1';
+        $user->save();
     }
 }

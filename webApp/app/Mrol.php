@@ -6,18 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Mrol extends Model
 {
-    protected $table="rol";
-    protected $primarykey="id";
-    protected $fillable = [
-        'descripcion','nombre'
-    ];
+    protected $table = 'rol';
+    protected $fillable = ['nombre','descripcion','condicion'];
+    public $timestamps = false;
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password',
-    ];
+    public function users()
+    {
+        return $this->hasMany('App\User');
+    }
+
 }

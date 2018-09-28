@@ -1,4 +1,4 @@
-@if(Auth::user()->idrol !== 3)
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -10,7 +10,7 @@
     <meta name="author" content="Incanatoit.com">
     <meta name="keyword" content="Sistema ventas Laravel Vue Js, Sistema compras Laravel Vue Js">
     <link rel="shortcut icon" href="img/favicon.png">
-    <title>Sistema Ventas - IncanatoIT</title>
+    <title>Sistema Ventas-Pedidos</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Icons -->
     <link href="/admin/css/plantilla.css" rel="stylesheet">
@@ -56,7 +56,7 @@
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                    <img src="img/avatars/6.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
+                    <img src="/admin/avatars/6.jpg" class="img-avatar">
                     <span class="d-md-down-none">{{Auth::user()->usuario}} </span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
@@ -78,11 +78,11 @@
     <div class="app-body">
         
         @if(Auth::check())
-            @if (Auth::user()->idrol == 1)
+            @if (Auth::user()->idRol == 1)
                 @include('plantilla.sidebaradministrador')
-            @elseif (Auth::user()->idrol == 2)
+            @elseif (Auth::user()->idRol == 2)
                 @include('plantilla.sidebarvendedor')
-            @elseif (Auth::user()->idrol == 3)
+            @elseif (Auth::user()->idRol == 3)
                 @include('plantilla.sidebaralmacenero')
             @else
 
@@ -212,11 +212,10 @@
 
 
 
-    <script src="js/app.js"></script>
-    <script src="js/plantilla.js"></script>
+    <script src="/js/app.js"></script>
+    <script src="admin/js/plantilla.js"></script>
     
 
 </body>
 
 </html>
-@endif 

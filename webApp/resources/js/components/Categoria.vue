@@ -189,7 +189,7 @@
         methods : {
             listarCategoria (page,buscar,criterio){
                 let me=this;
-                var url= '/categoria?page=' + page + '&buscar='+ buscar + '&criterio='+ criterio;
+                var url= '/dashboard/categoria?page=' + page + '&buscar='+ buscar + '&criterio='+ criterio;
                 axios.get(url).then(function (response) {
                     var respuesta= response.data;
                     me.arrayCategoria = respuesta.categorias.data;
@@ -213,7 +213,7 @@
                 
                 let me = this;
 
-                axios.post('/categoria/registrar',{
+                axios.post('/dashboard/categoria/registrar',{
                     'nombre': this.nombre,
                     'descripcion': this.descripcion
                 }).then(function (response) {
@@ -230,7 +230,7 @@
                 
                 let me = this;
 
-                axios.put('/categoria/actualizar',{
+                axios.put('/dashboard/categoria/actualizar',{
                     'nombre': this.nombre,
                     'descripcion': this.descripcion,
                     'id': this.categoria_id
@@ -258,7 +258,7 @@
                 if (result.value) {
                     let me = this;
 
-                    axios.put('/categoria/desactivar',{
+                    axios.put('/dashboard/categoria/desactivar',{
                         'id': id
                     }).then(function (response) {
                         me.listarCategoria(1,'','nombre');
@@ -297,7 +297,7 @@
                 if (result.value) {
                     let me = this;
 
-                    axios.put('/categoria/activar',{
+                    axios.put('/dashboard/categoria/activar',{
                         'id': id
                     }).then(function (response) {
                         me.listarCategoria(1,'','nombre');

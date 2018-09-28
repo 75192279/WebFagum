@@ -78,6 +78,7 @@
                   console.log(data);
                   switch(data.idRol){
                     case 1:
+                      this.redirect("/dashboard");
                       break;
                     case 2:
                       break;

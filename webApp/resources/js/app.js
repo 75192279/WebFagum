@@ -16,13 +16,16 @@ window.Vue = require('vue');
  */
 
 Vue.component('component-login', require('./components/login.vue'));
-Vue.component('categoria', require('./components/Categoria.vue'));
 Vue.component('cliente', require('./components/Cliente.vue'));
 Vue.component('proveedor', require('./components/Proveedor.vue'));
 Vue.component('rol', require('./components/Rol.vue'));
 Vue.component('user', require('./components/User.vue'));
+Vue.component('producto', require('./components/Producto.vue'));
+Vue.component('categoria', require('./components/Categoria.vue'));
 
-Vue.component('consulta', require('./components/Consulta.vue'));
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    data :{
+        menu : 0
+    },
 });
