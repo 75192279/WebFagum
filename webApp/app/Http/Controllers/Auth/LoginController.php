@@ -37,6 +37,7 @@ class LoginController extends Controller
            return Auth::user();
         }
         
-        return  $request->correo;
+        return response()->json(['error' => 'correo electrónico o contraseña no coincide
+        '], 401);
     }
 }

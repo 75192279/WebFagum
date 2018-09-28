@@ -97,7 +97,7 @@
                       this.redirect("/");
                   }
                 }).catch(error=>{
-                    toastr.success('Error de accesso', 'Error');
+                    toastr.error('Correo electrónico o contraseña no coincide', 'Error');
                     console.log(error)
                 });
             },
@@ -130,7 +130,6 @@
                     this.formDataSend.correo='';
                     this.formDataSend.password_confirm='';
                     this.formLogin();
-                    console.log(response);
                 }).catch(error=>{
                     toastr.success('No se guardo', 'Error');
                     console.log(error)
