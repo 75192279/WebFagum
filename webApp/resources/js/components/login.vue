@@ -40,10 +40,17 @@
 </template>
 
 <script>
-    import axios from "axios"
+    import axios from "axios";
+    import toastr from "toastr";
+    import "toastr/build/toastr.css";
     export default {
-        mounted() {
-            console.log('Component mounted.')
+        mounted: {
+           isValidateLogin:function(){
+             return false;
+           },
+           isValidateRegister:function(){
+              return false;
+           }
         },
         data()
         {
@@ -75,6 +82,7 @@
                     'password':password
                 }).then(response=>{
                   var data=response.data;
+                  toastr.success(data.usuario, 'Bienvenido');
                   console.log(data);
                   switch(data.idRol){
                     case 1:
@@ -89,6 +97,7 @@
                       this.redirect("/");
                   }
                 }).catch(error=>{
+                    toastr.success('Error de accesso', 'Error');
                     console.log(error)
                 });
             },
@@ -98,6 +107,15 @@
                 var password=this.formDataSend.password;
                 var password_confirm=this.formDataSend.password_confirm;
                 if(password!==password_confirm){
+                  toastr.error('Contraseña no coincide', 'Error');
+                  return false;
+                }
+                if(usuario==''){
+                  toastr.error('Usuario no valido', 'Error');
+                  return false;
+                }
+                if(correo==''){
+                  toastr.error('Correo no valido', 'Error');
                   return false;
                 }
                 var url="/login-register";
@@ -106,8 +124,15 @@
                     'usuario':usuario,
                     'password':password
                 }).then(response=>{
+                    toastr.success('Se guardo exitosamente', 'Exito');
+                    this.formDataSend.usuario='';
+                    this.formDataSend.password='';
+                    this.formDataSend.correo='';
+                    this.formDataSend.password_confirm='';
+                    this.formLogin();
                     console.log(response);
                 }).catch(error=>{
+                    toastr.success('No se guardo', 'Error');
                     console.log(error)
                 });
             },
