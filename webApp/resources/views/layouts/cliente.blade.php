@@ -369,9 +369,9 @@
 			</nav>
 		</div>
 	</header>
-
-    @yield('content')
-
+	<div  id="app">
+		@yield('content')
+	</div>
 	<footer class="bg6 p-t-45 p-b-43 p-l-45 p-r-45">
 		<div class="flex-w p-b-90">
 			<div class="w-size6 p-t-30 p-l-15 p-r-15 respon3">
@@ -577,6 +577,7 @@ ESTAR EN CONTACTO
 		});
 	</script>
     <script src="{{ asset('/cliente/js/main.js') }}"></script>
+    <script src="{{ asset('/js/app.js') }}"></script>
     @yield('scripts')
     
   </body>

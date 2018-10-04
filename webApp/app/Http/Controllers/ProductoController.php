@@ -15,14 +15,14 @@ class ProductoController extends Controller
         
         if ($buscar==''){
             $productos = Mproducto::join('categoria','producto.idcategoria','=','categoria.id')
-            ->select('producto.id','producto.idcategoria','producto.codigo','producto.nombre','categoria.nombre as nombre_categoria','producto.precio','producto.stockminimo','producto.stockmaximo','producto.stockactual','producto.descripcion','producto.condicion')
-            ->orderBy('producto.id', 'desc')->paginate(3);
+            ->select('producto.id','producto.idcategoria','producto.codigo','producto.thumbnail','producto.medium','producto.large','producto.image','producto.nombre','categoria.nombre as nombre_categoria','producto.precio','producto.stockminimo','producto.stockmaximo','producto.stockactual','producto.descripcion','producto.condicion')
+            ->orderBy('producto.id', 'desc')->paginate(10);
         }
         else{
             $productos = Mproducto::join('categoria','producto.idcategoria','=','categoria.id')
-            ->select('producto.id','producto.idcategoria','producto.codigo','producto.nombre','categoria.nombre as nombre_categoria','producto.precio','producto.stockminimo','producto.stockmaximo','producto.stockactual','producto.descripcion','producto.condicion')
+            ->select('producto.id','producto.idcategoria','producto.codigo','producto.thumbnail','producto.medium','producto.large','producto.image','producto.nombre','categoria.nombre as nombre_categoria','producto.precio','producto.stockminimo','producto.stockmaximo','producto.stockactual','producto.descripcion','producto.condicion')
             ->where('producto.'.$criterio, 'like', '%'. $buscar . '%')
-            ->orderBy('producto.id', 'desc')->paginate(3);
+            ->orderBy('producto.id', 'desc')->paginate(10);
         }
         
 
@@ -135,6 +135,10 @@ class ProductoController extends Controller
         $producto->stockminimo = $request->stockminimo;
         $producto->stockmaximo = $request->stockmaximo;
         $producto->descripcion = $request->descripcion;
+        $producto->image = $request->full;
+        $producto->thumbnail = $request->thumbnail;
+        $producto->medium = $request->medium;
+        $producto->large = $request->large;
         $producto->condicion = '1';
         $producto->save();
     }
@@ -150,6 +154,10 @@ class ProductoController extends Controller
         $producto->stockminimo = $request->stockminimo;
         $producto->stockmaximo = $request->stockmaximo;
         $producto->descripcion = $request->descripcion;
+        $producto->image = $request->full;
+        $producto->thumbnail = $request->thumbnail;
+        $producto->medium = $request->medium;
+        $producto->large = $request->large;
         $producto->condicion = '1';
         $producto->save();
     }

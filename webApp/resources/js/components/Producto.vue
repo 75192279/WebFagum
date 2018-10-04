@@ -10,7 +10,7 @@
                     <div class="card-header">
                         <i class="fa fa-align-justify"></i> Artículos
                         <button type="button" @click="abrirModal('product','registrar')" class="btn btn-secondary">
-                            <i class="icon-plus"></i>&nbsp;Nuevo
+                            <i class="fas fa-plus"></i>&nbsp;Nuevo
                         </button>
                         <!--
                         <button type="button" @click="cargarPdf()" class="btn btn-info">
@@ -35,6 +35,7 @@
                             <thead>
                                 <tr>
                                     <th>Opciones</th>
+                                    <th></th>
                                     <th>Código</th>
                                     <th>Nombre</th>
                                     <th>Categoría</th>
@@ -50,19 +51,20 @@
                                 <tr v-for="product in arrayProducto" :key="product.id">
                                     <td>
                                         <button type="button" @click="abrirModal('product','actualizar',product)" class="btn btn-warning btn-sm">
-                                          <i class="icon-pencil"></i>
+                                          <i class="fas fa-pen"></i>
                                         </button> &nbsp;
                                         <template v-if="product.condicion">
                                             <button type="button" class="btn btn-danger btn-sm" @click="desactivarProducto(product.id)">
-                                                <i class="icon-trash"></i>
+                                                 <i class="fas fa-trash"></i>
                                             </button>
                                         </template>
                                         <template v-else>
                                             <button type="button" class="btn btn-info btn-sm" @click="activarArticulo(product.id)">
-                                                <i class="icon-check"></i>
+                                                <i class="fas fa-check"></i>
                                             </button>
                                         </template>
                                     </td>
+                                    <td><img v-bind:src="'/storage/'+product.thumbnail"></td>
                                     <td v-text="product.codigo"></td>
                                     <td v-text="product.nombre"></td>
                                     <td v-text="product.nombre_categoria"></td>
@@ -110,8 +112,9 @@
                               <span aria-hidden="true">×</span>
                             </button>
                         </div>
-                        <div class="modal-body">
-                            <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+                        <div v-if="!next">
+                            <div class="modal-body">
+                                <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
                                 <div class="form-group row">
                                     <label class="col-md-3 form-control-label" for="text-input">Categoría</label>
                                     <div class="col-md-9">
@@ -143,27 +146,9 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="text-input">Stock Minimo</label>
-                                    <div class="col-md-9">
-                                        <input type="number" v-model="stockMinimo" class="form-control" placeholder="">                                        
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="text-input">Stock Maximo</label>
-                                    <div class="col-md-9">
-                                        <input type="number" v-model="stockMaximo" class="form-control" placeholder="">                                        
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="text-input">Stock Actual</label>
-                                    <div class="col-md-9">
-                                        <input type="number" v-model="stockActual" class="form-control" placeholder="">                                        
-                                    </div>
-                                </div>
-                                <div class="form-group row">
                                     <label class="col-md-3 form-control-label" for="email-input">Descripción</label>
                                     <div class="col-md-9">
-                                        <input type="email" v-model="descripcion" class="form-control" placeholder="Ingrese descripción">
+                                        <textarea cols="30" class="form-control" placeholder="Ingrese descripción" v-model="descripcion"  rows="1" style="min-height:100px;overflow: hidden;resize: none;"></textarea>
                                     </div>
                                 </div>
                                 <div v-show="errorArticulo" class="form-group row div-error">
@@ -175,11 +160,63 @@
                                 </div>
 
                             </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" @click="cerrarModal()">Cerrar</button>
+                                <button type="button" class="btn btn-primary" @click="nextPage()">Seguiente</button>
+                            </div>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" @click="cerrarModal()">Cerrar</button>
-                            <button type="button" v-if="tipoAccion==1" class="btn btn-primary" @click="registrarProducto()">Guardar</button>
-                            <button type="button" v-if="tipoAccion==2" class="btn btn-primary" @click="actualizarProducto()">Actualizar</button>
+                         <div v-if="next">
+                             <div class="modal-body">
+                                <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+                                    
+                                    <div class="form-group row">
+                                        <label class="col-md-3 form-control-label" for="text-input">Stock Minimo</label>
+                                        <div class="col-md-9">
+                                            <input type="number" v-model="stockMinimo" class="form-control" placeholder="">                                        
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-3 form-control-label" for="text-input">Stock Maximo</label>
+                                        <div class="col-md-9">
+                                            <input type="number" v-model="stockMaximo" class="form-control" placeholder="">                                        
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-3 form-control-label" for="text-input">Stock Actual</label>
+                                        <div class="col-md-9">
+                                            <input type="number" v-model="stockActual" class="form-control" placeholder="">                                        
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-12" >
+                                            <div class="Jcontainer">
+                                                <input type="file" @change="onFileSelected" id="file" class="form-control Jinputfile" placeholder=""> 
+                                                <label class="form-control-label" for="file" v-bind:style="{ background: 'url('+image.url+')'}">
+                                                    <i class="fas fa-file-upload"></i><br>
+                                                    <span class="JfileLabel" v-if="!isImage">Subir imagen</span>
+                                                    <span class="JfileLabel--image" v-if="isImage">{{image.name}}</span>
+                                                </label>  
+                                            </div>                                
+                                        </div>
+                                    </div>
+                                    
+                                    <div v-show="errorArticulo" class="form-group row div-error">
+                                        <div class="text-center text-error">
+                                            <div v-for="error in errorMostrarMsjArticulo" :key="error" v-text="error">
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" @click="cerrarModal()">Cerrar</button>
+                                <button type="button" class="btn btn-primary" @click="nextPage()">{{nameNextPage}}</button>
+                                <button type="button" v-if="tipoAccion==1" class="btn btn-success" @click="onUpload(0)">Guardar</button>
+                                <button type="button" v-if="tipoAccion==2" class="btn btn-primary" @click="updateData()">Actualizar</button>
+                            </div>
                         </div>
                     </div>
                     <!-- /.modal-content -->
@@ -201,6 +238,18 @@
                 codigo : '',
                 nombre : '',
                 precio : 0,
+                selectedFile:null,
+                image:{
+                    name:'',
+                    url:'',
+                },
+                new_image:{
+                    thumbnail:'',
+                    medium:'',
+                    large:'',
+                    full:'',
+                    checked: false,
+                },
                 stockMaximo : 0,
                 stockMinimo : 0,
                 stockActual : 0,
@@ -210,6 +259,8 @@
                 tituloModal : '',
                 tipoAccion : 0,
                 errorArticulo : 0,
+                next: false,
+                nameNextPage: "Seguiente",
                 errorMostrarMsjArticulo : [],
                 pagination : {
                     'total' : 0,
@@ -229,6 +280,12 @@
         'barcode': VueBarcode
     },
         computed:{
+            isImage(){
+                if(!this.image.url==''){
+                    return true;
+                }
+                return false;
+            },
             isActived: function(){
                 return this.pagination.current_page;
             },
@@ -258,6 +315,54 @@
             }
         },
         methods : {
+            nextPage: function(){
+                this.next=!this.next;
+                if(this.next==true){
+                    this.nameNextPage="Atras"
+                }
+                else{
+                    this.nameNextPage="Seguiente"
+                }
+            },
+            onFileSelected: function(event){
+                this.image.name=event.target.files[0].name;
+                var fileReader=new FileReader()
+                fileReader.readAsDataURL(event.target.files[0]);
+                fileReader.onload=(e)=>{
+                    this.image.url=e.target.result;
+                    console.log(e.target);
+                }
+                /*
+                this.selectedFile=event.target.files[0];
+                console.log(this.selectedFile);
+                */
+            },
+            onUpload: function(action){
+                axios.post('/dashboard/upload-image',{
+                    'fileUpload': this.image.url,
+                },
+                {
+                    onUploadProgress: uploadEvent=>{
+                        console.log('Upload profess: '+Math.round(uploadEvent.loaded/uploadEvent.total*100))
+                    }
+                }).then(response=>{
+                    this.new_image.thumbnail=response.data.thumbnail;
+                    this.new_image.large=response.data.large;
+                    this.new_image.medium=response.data.medium;
+                    this.new_image.full=response.data.full;
+                    this.new_image.checked=true;
+                    console.log(this.new_image.thumbnail,response);
+                   
+                    if(action==0){
+                        this.registrarProducto();
+                    }
+                    else{
+                        this.actualizarProducto();
+                    }
+                }).catch(function (error) {
+                    console.log(error);
+                });
+            },
             listarProducto (page,buscar,criterio){
                 let me=this;
                 var url= '/dashboard/producto?page=' + page + '&buscar='+ buscar + '&criterio='+ criterio;
@@ -296,10 +401,9 @@
                 if (this.validarProducto()){
                     return;
                 }
-                
                 let me = this;
-
-                axios.post('/dashboard/producto/registrar',{
+                if(this.new_image.checked==true){
+                    axios.post('/dashboard/producto/registrar',{
                     'idcategoria': this.idcategoria,
                     'codigo': this.codigo,
                     'nombre': this.nombre,
@@ -307,13 +411,28 @@
                     'stockmaximo': this.stockMaximo,
                     'stockactual': this.stockActual,
                     'precio': this.precio,
-                    'descripcion': this.descripcion
-                }).then(function (response) {
-                    me.cerrarModal();
-                    me.listarProducto(1,'','nombre');
-                }).catch(function (error) {
-                    console.log(error);
-                });
+                    'descripcion': this.descripcion,
+                    'thumbnail': this.new_image.thumbnail,
+                    'medium': this.new_image.medium,
+                    'large': this.new_image.large,
+                    'full': this.new_image.full,
+                    }).then(function (response) {
+                        this.new_image.checked=false;
+                        me.cerrarModal();
+                        me.listarProducto(1,'','nombre');
+                    }).catch(function (error) {
+                        console.log(error);
+                    });
+                }
+            },
+            updateData(){
+                 if(this.image.url!=='/storage/'+this.new_image.full){
+                    this.onUpload(1);
+                    console.log('diferente')
+                }
+                else{
+                    this.actualizarProducto();
+                }
             },
             actualizarProducto(){
                if (this.validarProducto()){
@@ -321,7 +440,7 @@
                 }
                 
                 let me = this;
-
+               
                 axios.put('/dashboard/producto/actualizar',{
                     'idcategoria': this.idcategoria,
                     'codigo': this.codigo,
@@ -331,6 +450,10 @@
                     'stockactual': this.stockActual,
                     'precio': this.precio,
                     'descripcion': this.descripcion,
+                    'thumbnail': this.new_image.thumbnail,
+                    'medium': this.new_image.medium,
+                    'large': this.new_image.large,
+                    'full': this.new_image.full,
                     'id': this.producto_id
                 }).then(function (response) {
                     me.cerrarModal();
@@ -481,6 +604,11 @@
                                 this.stockActual=data['stockactual'];
                                 this.precio=data['precio'];
                                 this.descripcion= data['descripcion'];
+                                this.new_image.thumbnail=data['thumbnail'];
+                                this.new_image.medium=data['medium'];
+                                this.new_image.large=data['large'];
+                                this.new_image.full=data['image'];
+                                this.image.url='/storage/'+data['image'];
                                 break;
                             }
                         }
@@ -512,5 +640,54 @@
     .text-error{
         color: red !important;
         font-weight: bold;
+    }
+    .Jcontainer{
+        width: 30%;
+        min-width: 250px;
+        text-align: center;
+        margin: 0 auto;
+        height: 250px;
+    }
+    .Jinputfile {
+        width: 0.1px;
+        height: 0.1px;
+        opacity: 0;
+        overflow: hidden;
+        position: absolute;
+        z-index: -1;
+    }
+    .Jinputfile + label {
+            position: relative;
+            font-size: 70px;
+            width: 100%;
+            text-align: center;
+            cursor: pointer;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+            font-weight: 700;
+            color: #151b1f;
+            background-repeat: round !important;
+            display: flex;
+    }
+    .JfileLabel{
+        position: absolute;
+        bottom: 30px;
+        font-size:18px;
+    }
+    .JfileLabel--image{
+        position: absolute;
+        bottom: 30px;
+        font-size:18px;
+        min-width: 200px;
+        max-width: 200px;
+        overflow: hidden;
+    }
+    
+
+    .Jinputfile:focus + label,
+    .Jinputfile + label:hover {
+        outline: 1px dotted #000;
+	    outline: -webkit-focus-ring-color auto 5px;
     }
 </style>

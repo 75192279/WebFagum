@@ -21,7 +21,7 @@ Route::get('/login','Auth\LoginController@viewLogin')->name('login');
 Route::post('/login-autenticate','Auth\LoginController@login');
 Route::post('/login-register','Auth\RegisterController@create');
 Route::get('/logout','Auth\LoginController@logout')->name('logout');
-
+Route::get('/producto', 'ProductoController@index');
 Route::resource('/usuario','UsuarioController');
 
 Route::get('/nosotros', function () {
@@ -37,6 +37,7 @@ Route::group(['prefix'=>'dashboard','middleware'=>['auth','admin']],function(){
     Route::get('/',function(){
        return view('contenido.contenido');
     });
+    Route::post('/upload-image','ImageController@upload');
     Route::get('/rol', 'RolController@index');
     Route::get('/rol/selectRol', 'RolController@selectRol');
 

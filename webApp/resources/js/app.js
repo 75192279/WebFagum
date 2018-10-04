@@ -21,6 +21,7 @@ Vue.component('proveedor', require('./components/Proveedor.vue'));
 Vue.component('rol', require('./components/Rol.vue'));
 Vue.component('user', require('./components/User.vue'));
 Vue.component('producto', require('./components/Producto.vue'));
+Vue.component('catalogo-component', require('./components/Catalogo.vue'));
 Vue.component('categoria', require('./components/Categoria.vue'));
 
 const app = new Vue({

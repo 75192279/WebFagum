@@ -10,7 +10,7 @@
                     <div class="card-header">
                         <i class="fa fa-align-justify"></i> Categorías
                         <button type="button" @click="abrirModal('categoria','registrar')" class="btn btn-secondary">
-                            <i class="icon-plus"></i>&nbsp;Nuevo
+                            <i class="fas fa-plus"></i>&nbsp;Nuevo
                         </button>
                     </div>
                     <div class="card-body">
@@ -39,16 +39,16 @@
                                 <tr v-for="categoria in arrayCategoria" :key="categoria.id">
                                     <td>
                                         <button type="button" @click="abrirModal('categoria','actualizar',categoria)" class="btn btn-warning btn-sm">
-                                          <i class="icon-pencil"></i>
+                                          <i class="fas fa-pen"></i>
                                         </button> &nbsp;
                                         <template v-if="categoria.condicion">
                                             <button type="button" class="btn btn-danger btn-sm" @click="desactivarCategoria(categoria.id)">
-                                                <i class="icon-trash"></i>
+                                                <i class="fas fa-trash"></i>
                                             </button>
                                         </template>
                                         <template v-else>
                                             <button type="button" class="btn btn-info btn-sm" @click="activarCategoria(categoria.id)">
-                                                <i class="icon-check"></i>
+                                               <i class="fas fa-check"></i>
                                             </button>
                                         </template>
                                     </td>

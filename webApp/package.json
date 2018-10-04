@@ -21,6 +21,7 @@
     },
     "dependencies": {
         "toastr": "^2.1.4",
-        "vue-barcode": "^1.1.0"
+        "vue-barcode": "^1.1.0",
+        "vue-image-upload-resize": "^1.1.6"
     }
 }
