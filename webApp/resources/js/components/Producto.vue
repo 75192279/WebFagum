@@ -421,7 +421,8 @@
                         me.cerrarModal();
                         me.listarProducto(1,'','nombre');
                     }).catch(function (error) {
-                        console.log(error);
+                        me.cerrarModal();
+                        me.listarProducto(1,'','nombre');
                     });
                 }
             },
