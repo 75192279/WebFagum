@@ -59339,11 +59339,48 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
+            tabs: [{ key: 1, title: 'tab1', active: true, isvalidate: false }, { key: 2, title: 'tab2', active: false, isvalidate: false }, { key: 3, title: 'tab3', active: false, isvalidate: false }, { key: 4, title: 'tab4', active: false, isvalidate: false }, { key: 5, title: 'tab5', active: false, isvalidate: false }],
+            producto: {},
             producto_id: 0,
             idcategoria: 0,
             nombre_categoria: '',
@@ -59418,6 +59455,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
     },
     methods: {
+        addProducto: function addProducto(product) {
+            this.producto = product;
+            //this.isTabsActive(1);
+        },
+        isTabsActive: function isTabsActive(index) {
+            for (var i = 0; i < this.tabs.length; i++) {
+                this.tabs[i].active = false;
+            }
+            this.tabs[index].active = true;
+        },
         nextPage: function nextPage() {
             this.next = !this.next;
             if (this.next == true) {
@@ -59472,47 +59519,120 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "row" },
-    _vm._l(_vm.arrayProducto, function(product) {
-      return _c(
-        "div",
-        {
-          key: product.id,
-          staticClass: "col-sm-10 col-md-8 col-lg-4 m-l-r-auto"
-        },
-        [
-          _c(
-            "div",
-            { staticClass: "block1 hov-img-zoom pos-relative m-b-30" },
-            [
-              _c("img", {
-                attrs: { src: "/storage/" + product.large, alt: "IMG-BENNER" }
-              }),
-              _vm._v(" "),
-              _c("div", { staticClass: "block1-wrapbtn w-size2" }, [
+  return _c("main", [
+    _c("div", { staticClass: "modal fade", attrs: { id: "validar" } }, [
+      _c("div", { staticClass: "modal-dialog" }, [
+        _c("div", { staticClass: "modal-content" }, [
+          _c("div", { staticClass: "modal-header" }, [
+            _c(
+              "button",
+              {
+                staticClass: "close",
+                attrs: { type: "button", "data-dismiss": "modal" }
+              },
+              [_vm._v("×")]
+            ),
+            _vm._v(" "),
+            _c("h4", { staticClass: "modal-title" }, [
+              _vm._v(" Agregar  " + _vm._s(_vm.producto.nombre))
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "modal-body" }, [
+            _c(
+              "div",
+              { staticClass: "block1 hov-img-zoom pos-relative m-b-30" },
+              [
+                _c("img", {
+                  attrs: {
+                    src: "/storage/" + _vm.producto.large,
+                    alt: "IMG-BENNER"
+                  }
+                })
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "modal-footer" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-success",
+                attrs: {
+                  type: "button",
+                  name: "btnAceptar",
+                  id: "btnaceptar",
+                  "data-dismiss": "modal"
+                },
+                on: {
+                  click: function($event) {
+                    _vm.guardarDatosVenta()
+                  }
+                }
+              },
+              [_c("i", { staticClass: "fa fa-check" }), _vm._v("Agregar")]
+            )
+          ])
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _vm.tabs[0].active
+      ? _c(
+          "div",
+          { staticClass: "row" },
+          _vm._l(_vm.arrayProducto, function(product) {
+            return _c(
+              "div",
+              {
+                key: product.id,
+                staticClass: "col-sm-10 col-md-8 col-lg-4 m-l-r-auto"
+              },
+              [
                 _c(
-                  "a",
-                  {
-                    staticClass: "flex-c-m size2 m-text2 bg3 hov1 trans-0-4",
-                    attrs: { href: "#" }
-                  },
+                  "div",
+                  { staticClass: "block1 hov-img-zoom pos-relative m-b-30" },
                   [
-                    _vm._v(
-                      "\n                    " +
-                        _vm._s(product.nombre) +
-                        "\n                "
-                    )
+                    _c("img", {
+                      attrs: {
+                        src: "/storage/" + product.large,
+                        alt: "IMG-BENNER"
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "block1-wrapbtn w-size2" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass:
+                            "flex-c-m size2 m-text2 bg3 hov1 trans-0-4",
+                          attrs: {
+                            "data-toggle": "modal",
+                            "data-target": "#validar"
+                          },
+                          on: {
+                            click: function($event) {
+                              _vm.addProducto(product)
+                            }
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                        " +
+                              _vm._s(product.nombre) +
+                              "\n                    "
+                          )
+                        ]
+                      )
+                    ])
                   ]
                 )
-              ])
-            ]
-          )
-        ]
-      )
-    })
-  )
+              ]
+            )
+          })
+        )
+      : _vm._e()
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
