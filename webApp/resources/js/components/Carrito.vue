@@ -13,8 +13,9 @@
 
 						<tr class="table-row"  v-for="product in arrayProducto" :key="product.id">
 							<td class="column-1">
-								<div class="cart-img-product b-rad-4 o-f-hidden">
-									<img src="/cliente/images/item-10.jpg" alt="IMG-PRODUCT">
+								<div class="cart-img-product b-rad-4 o-f-hidden" @click="deleteProduct(product.id)">
+                                    <img v-if="product.attributes.medium" v-bind:src="'/storage/'+product.attributes.medium" alt="IMG-PRODUCT">
+                                    <img v-if="!product.attributes.medium" src="/cliente/images/item-10.jpg" alt="IMG-PRODUCT">
 								</div>
 							</td>
 							<td class="column-2">{{product.name}}</td>
@@ -124,7 +125,7 @@
                 </div>
                 <div v-show="tabs[1].active">
                     <div v-if="idUser==false">
-                        <login-component></login-component>
+                        <login-component :redirect="false"></login-component>
                     </div>
                     <div v-if="idUser==true">
                         
@@ -270,13 +271,59 @@
                    
                     if(!response.data.error){
                         this.dataUser=response.data.data
+                        this.idUser=!response.data.error
                     }
-                    this.idUser=!response.data.error
-                    console.log(this.idUser)
+                    else{
+                        this.idUser=!response.data.error
+                        this.checkedLogin();
+                    }
+                    
                 })
                 .catch(function (error) {
                     console.log(error);
                 });
+            },
+            checkedUserSet:function(){
+                let me=this;
+                var url= '/ckecked-user-login';
+                axios.get(url).then(response=>{
+                   
+                    if(!response.data.error){
+                        this.dataUser=response.data.data
+                        this.idUser=!response.data.error
+                    }
+                    else{
+                        this.idUser=!response.data.error
+                    }
+                    
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+            },
+            checkedLogin(){
+                var me=this;
+                var timerUpdate=setInterval(function(){
+                    if(me.idUser== true){
+                        clearInterval(timerUpdate);
+                    }  
+                    else{
+                        me.checkedUserSet();
+                        console.log('no login');
+                    }                
+                },1000);
+            },
+            deleteProduct: function(id){
+                var url='/delete-producto-carrito';
+                axios.post(url,{
+                    'id':id,
+                })
+                .then(response=>{
+                    this.listarProducto();
+                })
+                .catch(error=>{
+                    console.log(error);
+                })
             },
             guardarDatosVenta:function(){
                 console.log(this.producto);

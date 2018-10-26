@@ -52,6 +52,9 @@
               return false;
            }
         },
+        props:{
+          redirect:true,
+        },
         data()
         {
             return {
@@ -83,7 +86,9 @@
                 }).then(response=>{
                   var data=response.data;
                   toastr.success(data.usuario, 'Bienvenido');
-                  console.log(data);
+                  if(!this.redirect){
+                      return true;
+                  }
                   switch(data.idRol){
                     case 1:
                       this.redirect("/dashboard");

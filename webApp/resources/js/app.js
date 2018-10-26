@@ -15,6 +15,8 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+
+Vue.component('component-carrito-header', require('./components/CarritoHeader.vue'));
 Vue.component('component-carrito', require('./components/Carrito.vue'));
 Vue.component('component-login', require('./components/login.vue'));
 Vue.component('cliente', require('./components/Cliente.vue'));

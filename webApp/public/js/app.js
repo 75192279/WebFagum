@@ -15459,6 +15459,7 @@ window.Vue = __webpack_require__(55);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+Vue.component('component-carrito-header', __webpack_require__(143));
 Vue.component('component-carrito', __webpack_require__(140));
 Vue.component('component-login', __webpack_require__(58));
 Vue.component('cliente', __webpack_require__(70));
@@ -48827,7 +48828,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* BASIC */\nhtml {\n  background-color: #56baed;\n}\nbody {\n  font-family: \"Poppins\", sans-serif;\n  height: 100vh;\n}\na {\n  color: #92badd;\n  display:inline-block;\n  text-decoration: none;\n  font-weight: 400;\n}\nh2 {\n  text-align: center;\n  font-size: 16px;\n  font-weight: 600;\n  text-transform: uppercase;\n  display:inline-block;\n  margin: 40px 8px 10px 8px; \n  color: #cccccc;\n}\n\n\n\n/* STRUCTURE */\n.wrapper {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column; \n  -webkit-box-pack: center; \n      -ms-flex-pack: center; \n          justify-content: center;\n  width: 97%;\n  min-height: 100%;\n  padding: 20px;\n}\n#formContent {\n  border-radius: 10px 10px 10px 10px;\n  background: #fff;\n  padding: 30px;\n  width: 90%;\n  max-width: 450px;\n  position: relative;\n  padding: 0px;\n  -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);\n  box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);\n  text-align: center;\n}\n#formFooter {\n  background-color: #f6f6f6;\n  border-top: 1px solid #dce8f1;\n  padding: 25px;\n  text-align: center;\n  border-radius: 0 0 10px 10px;\n}\n\n\n\n/* TABS */\nh2.inactive {\n  color: #cccccc;\n}\nh2.active {\n  color: #0d0d0d;\n  border-bottom: 2px solid #5fbae9;\n}\n\n\n\n/* FORM TYPOGRAPHY*/\ninput[type=button], input[type=submit], input[type=reset]  {\n  background-color: #56baed;\n  border: none;\n  color: white;\n  padding: 15px 80px;\n  text-align: center;\n  text-decoration: none;\n  display: inline-block;\n  text-transform: uppercase;\n  font-size: 13px;\n  -webkit-box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);\n  box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);\n  border-radius: 5px 5px 5px 5px;\n  margin: 5px 20px 40px 20px;\n  -webkit-transition: all 0.3s ease-in-out;\n  transition: all 0.3s ease-in-out;\n}\ninput[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover  {\n  background-color: #39ace7;\n}\ninput[type=button]:active, input[type=submit]:active, input[type=reset]:active  {\n  -webkit-transform: scale(0.95);\n  transform: scale(0.95);\n}\n.inputLogin  {\n  background-color: #f6f6f6;\n  border: none;\n  color: #0d0d0d;\n  padding: 15px 32px;\n  text-align: center;\n  text-decoration: none;\n  display: inline-block;\n  font-size: 16px;\n  margin: 5px;\n  width: 75%;\n  border: 2px solid #f6f6f6;\n  -webkit-transition: all 0.5s ease-in-out;\n  transition: all 0.5s ease-in-out;\n  border-radius: 5px 5px 5px 5px;\n}\ninput[type=text]:focus {\n  background-color: #fff;\n  border-bottom: 2px solid #5fbae9;\n}\ninput[type=text]:placeholder {\n  color: #cccccc;\n}\n\n\n\n/* ANIMATIONS */\n\n/* Simple CSS3 Fade-in-down Animation */\n.fadeInDown {\n  -webkit-animation-name: fadeInDown;\n  animation-name: fadeInDown;\n  -webkit-animation-duration: 1s;\n  animation-duration: 1s;\n  -webkit-animation-fill-mode: both;\n  animation-fill-mode: both;\n}\n@-webkit-keyframes fadeInDown {\n0% {\n    opacity: 0;\n    -webkit-transform: translate3d(0, -100%, 0);\n    transform: translate3d(0, -100%, 0);\n}\n100% {\n    opacity: 1;\n    -webkit-transform: none;\n    transform: none;\n}\n}\n@keyframes fadeInDown {\n0% {\n    opacity: 0;\n    -webkit-transform: translate3d(0, -100%, 0);\n    transform: translate3d(0, -100%, 0);\n}\n100% {\n    opacity: 1;\n    -webkit-transform: none;\n    transform: none;\n}\n}\n\n/* Simple CSS3 Fade-in Animation */\n@-webkit-keyframes fadeIn {\nfrom { opacity:0;\n}\nto { opacity:1;\n}\n}\n@keyframes fadeIn {\nfrom { opacity:0;\n}\nto { opacity:1;\n}\n}\n.fadeIn {\n  opacity:0;\n  -webkit-animation:fadeIn ease-in 1;\n  animation:fadeIn ease-in 1;\n\n  -webkit-animation-fill-mode:forwards;\n  animation-fill-mode:forwards;\n\n  -webkit-animation-duration:1s;\n  animation-duration:1s;\n}\n.fadeIn.first {\n  -webkit-animation-delay: 0.4s;\n  animation-delay: 0.4s;\n}\n.fadeIn.second {\n  -webkit-animation-delay: 0.6s;\n  animation-delay: 0.6s;\n}\n.fadeIn.third {\n  -webkit-animation-delay: 0.8s;\n  animation-delay: 0.8s;\n}\n.fadeIn.fourth {\n  -webkit-animation-delay: 1s;\n  animation-delay: 1s;\n}\n\n/* Simple CSS3 Fade-in Animation */\n.underlineHover:after {\n  display: block;\n  left: 0;\n  bottom: -10px;\n  width: 0;\n  height: 2px;\n  background-color: #56baed;\n  content: \"\";\n  -webkit-transition: width 0.2s;\n  transition: width 0.2s;\n}\n.underlineHover:hover {\n  color: #0d0d0d;\n}\n.underlineHover:hover:after{\n  width: 100%;\n}\nh1{\n    color:#60a0ff;\n}\n\n/* OTHERS */\n*:focus {\n    outline: none;\n}\n#icon {\n  width:30%;\n}\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* BASIC */\nhtml {\n  background-color: #56baed;\n}\nbody {\n  font-family: \"Poppins\", sans-serif;\n  height: 100vh;\n}\na {\n  color: #92badd;\n  display:inline-block;\n  text-decoration: none;\n  font-weight: 400;\n}\nh2 {\n  text-align: center;\n  font-size: 16px;\n  font-weight: 600;\n  text-transform: uppercase;\n  display:inline-block;\n  margin: 40px 8px 10px 8px; \n  color: #cccccc;\n}\n\n\n\n/* STRUCTURE */\n.wrapper {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column; \n  -webkit-box-pack: center; \n      -ms-flex-pack: center; \n          justify-content: center;\n  width: 97%;\n  min-height: 100%;\n  padding: 20px;\n}\n#formContent {\n  border-radius: 10px 10px 10px 10px;\n  background: #fff;\n  padding: 30px;\n  width: 90%;\n  max-width: 450px;\n  position: relative;\n  padding: 0px;\n  -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);\n  box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);\n  text-align: center;\n}\n#formFooter {\n  background-color: #f6f6f6;\n  border-top: 1px solid #dce8f1;\n  padding: 25px;\n  text-align: center;\n  border-radius: 0 0 10px 10px;\n}\n\n\n\n/* TABS */\nh2.inactive {\n  color: #cccccc;\n}\nh2.active {\n  color: #0d0d0d;\n  border-bottom: 2px solid #5fbae9;\n}\n\n\n\n/* FORM TYPOGRAPHY*/\ninput[type=button], input[type=submit], input[type=reset]  {\n  background-color: #56baed;\n  border: none;\n  color: white;\n  padding: 15px 80px;\n  text-align: center;\n  text-decoration: none;\n  display: inline-block;\n  text-transform: uppercase;\n  font-size: 13px;\n  -webkit-box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);\n  box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);\n  border-radius: 5px 5px 5px 5px;\n  margin: 5px 20px 40px 20px;\n  -webkit-transition: all 0.3s ease-in-out;\n  transition: all 0.3s ease-in-out;\n}\ninput[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover  {\n  background-color: #39ace7;\n}\ninput[type=button]:active, input[type=submit]:active, input[type=reset]:active  {\n  -webkit-transform: scale(0.95);\n  transform: scale(0.95);\n}\n.inputLogin  {\n  background-color: #f6f6f6;\n  border: none;\n  color: #0d0d0d;\n  padding: 15px 32px;\n  text-align: center;\n  text-decoration: none;\n  display: inline-block;\n  font-size: 16px;\n  margin: 5px;\n  width: 75%;\n  border: 2px solid #f6f6f6;\n  -webkit-transition: all 0.5s ease-in-out;\n  transition: all 0.5s ease-in-out;\n  border-radius: 5px 5px 5px 5px;\n}\ninput[type=text]:focus {\n  background-color: #fff;\n  border-bottom: 2px solid #5fbae9;\n}\ninput[type=text]:placeholder {\n  color: #cccccc;\n}\n\n\n\n/* ANIMATIONS */\n\n/* Simple CSS3 Fade-in-down Animation */\n.fadeInDown {\n  -webkit-animation-name: fadeInDown;\n  animation-name: fadeInDown;\n  -webkit-animation-duration: 1s;\n  animation-duration: 1s;\n  -webkit-animation-fill-mode: both;\n  animation-fill-mode: both;\n}\n@-webkit-keyframes fadeInDown {\n0% {\n    opacity: 0;\n    -webkit-transform: translate3d(0, -100%, 0);\n    transform: translate3d(0, -100%, 0);\n}\n100% {\n    opacity: 1;\n    -webkit-transform: none;\n    transform: none;\n}\n}\n@keyframes fadeInDown {\n0% {\n    opacity: 0;\n    -webkit-transform: translate3d(0, -100%, 0);\n    transform: translate3d(0, -100%, 0);\n}\n100% {\n    opacity: 1;\n    -webkit-transform: none;\n    transform: none;\n}\n}\n\n/* Simple CSS3 Fade-in Animation */\n@-webkit-keyframes fadeIn {\nfrom { opacity:0;\n}\nto { opacity:1;\n}\n}\n@keyframes fadeIn {\nfrom { opacity:0;\n}\nto { opacity:1;\n}\n}\n.fadeIn {\n  opacity:0;\n  -webkit-animation:fadeIn ease-in 1;\n  animation:fadeIn ease-in 1;\n\n  -webkit-animation-fill-mode:forwards;\n  animation-fill-mode:forwards;\n\n  -webkit-animation-duration:1s;\n  animation-duration:1s;\n}\n.fadeIn.first {\n  -webkit-animation-delay: 0.4s;\n  animation-delay: 0.4s;\n}\n.fadeIn.second {\n  -webkit-animation-delay: 0.6s;\n  animation-delay: 0.6s;\n}\n.fadeIn.third {\n  -webkit-animation-delay: 0.8s;\n  animation-delay: 0.8s;\n}\n.fadeIn.fourth {\n  -webkit-animation-delay: 1s;\n  animation-delay: 1s;\n}\n\n/* Simple CSS3 Fade-in Animation */\n.underlineHover:after {\n  display: block;\n  left: 0;\n  bottom: -10px;\n  width: 0;\n  height: 2px;\n  background-color: #56baed;\n  content: \"\";\n  -webkit-transition: width 0.2s;\n  transition: width 0.2s;\n}\n.underlineHover:hover {\n  color: #0d0d0d;\n}\n.underlineHover:hover:after{\n  width: 100%;\n}\nh1{\n    color:#60a0ff;\n}\n\n/* OTHERS */\n*:focus {\n    outline: none;\n}\n#icon {\n  width:30%;\n}\n\n", ""]);
 
 // exports
 
@@ -48931,6 +48932,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             return false;
         }
     },
+    props: {
+        redirect: true
+    },
     data: function data() {
         return {
             login: true,
@@ -48964,7 +48968,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }).then(function (response) {
                 var data = response.data;
                 __WEBPACK_IMPORTED_MODULE_1_toastr___default.a.success(data.usuario, 'Bienvenido');
-                console.log(data);
+                if (!_this.redirect) {
+                    return true;
+                }
                 switch (data.idRol) {
                     case 1:
                         _this.redirect("/dashboard");
@@ -60889,6 +60895,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -61003,15 +61010,58 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
                 if (!response.data.error) {
                     _this4.dataUser = response.data.data;
+                    _this4.idUser = !response.data.error;
+                } else {
+                    _this4.idUser = !response.data.error;
+                    _this4.checkedLogin();
                 }
-                _this4.idUser = !response.data.error;
-                console.log(_this4.idUser);
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        checkedUserSet: function checkedUserSet() {
+            var _this5 = this;
+
+            var me = this;
+            var url = '/ckecked-user-login';
+            axios.get(url).then(function (response) {
+
+                if (!response.data.error) {
+                    _this5.dataUser = response.data.data;
+                    _this5.idUser = !response.data.error;
+                } else {
+                    _this5.idUser = !response.data.error;
+                }
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        checkedLogin: function checkedLogin() {
+            var me = this;
+            var timerUpdate = setInterval(function () {
+                if (me.idUser == true) {
+                    clearInterval(timerUpdate);
+                } else {
+                    me.checkedUserSet();
+                    console.log('no login');
+                }
+            }, 1000);
+        },
+
+        deleteProduct: function deleteProduct(id) {
+            var _this6 = this;
+
+            var url = '/delete-producto-carrito';
+            axios.post(url, {
+                'id': id
+            }).then(function (response) {
+                _this6.listarProducto();
             }).catch(function (error) {
                 console.log(error);
             });
         },
         guardarDatosVenta: function guardarDatosVenta() {
-            var _this5 = this;
+            var _this7 = this;
 
             console.log(this.producto);
             var url = '/add-producto-carrito';
@@ -61019,24 +61069,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 'producto': this.producto
             }).then(function (response) {
                 console.log(response);
-                _this5.producto = [];
+                _this7.producto = [];
             }).catch(function (error) {
                 console.log(error);
             });
         },
         listarProducto: function listarProducto(page, buscar, criterio) {
-            var _this6 = this;
+            var _this8 = this;
 
             var me = this;
             var url = 'list-producto-carrito';
             axios.get(url).then(function (response) {
-                _this6.arrayProducto = response.data;
+                _this8.arrayProducto = response.data;
                 var total = 0;
-                console.log(_this6.arrayProducto);
-                for (var product in _this6.arrayProducto) {
-                    total += _this6.arrayProducto[product].price * _this6.arrayProducto[product].quantity;
+                console.log(_this8.arrayProducto);
+                for (var product in _this8.arrayProducto) {
+                    total += _this8.arrayProducto[product].price * _this8.arrayProducto[product].quantity;
                 }
-                _this6.total = total;
+                _this8.total = total;
             }).catch(function (error) {
                 console.log(error);
             });
@@ -61066,7 +61116,38 @@ var render = function() {
             _vm._v(" "),
             _vm._l(_vm.arrayProducto, function(product) {
               return _c("tr", { key: product.id, staticClass: "table-row" }, [
-                _vm._m(1, true),
+                _c("td", { staticClass: "column-1" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "cart-img-product b-rad-4 o-f-hidden",
+                      on: {
+                        click: function($event) {
+                          _vm.deleteProduct(product.id)
+                        }
+                      }
+                    },
+                    [
+                      product.attributes.medium
+                        ? _c("img", {
+                            attrs: {
+                              src: "/storage/" + product.attributes.medium,
+                              alt: "IMG-PRODUCT"
+                            }
+                          })
+                        : _vm._e(),
+                      _vm._v(" "),
+                      !product.attributes.medium
+                        ? _c("img", {
+                            attrs: {
+                              src: "/cliente/images/item-10.jpg",
+                              alt: "IMG-PRODUCT"
+                            }
+                          })
+                        : _vm._e()
+                    ]
+                  )
+                ]),
                 _vm._v(" "),
                 _c("td", { staticClass: "column-2" }, [
                   _vm._v(_vm._s(product.name))
@@ -61155,7 +61236,7 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _vm._m(2),
+    _vm._m(1),
     _vm._v(" "),
     _c(
       "div",
@@ -61251,7 +61332,11 @@ var render = function() {
           },
           [
             _vm.idUser == false
-              ? _c("div", [_c("login-component")], 1)
+              ? _c(
+                  "div",
+                  [_c("login-component", { attrs: { redirect: false } })],
+                  1
+                )
               : _vm._e(),
             _vm._v(" "),
             _vm.idUser == true
@@ -61304,18 +61389,6 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("td", { staticClass: "column-1" }, [
-      _c("div", { staticClass: "cart-img-product b-rad-4 o-f-hidden" }, [
-        _c("img", {
-          attrs: { src: "/cliente/images/item-10.jpg", alt: "IMG-PRODUCT" }
-        })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c(
       "div",
       {
@@ -61345,6 +61418,468 @@ if (false) {
     require("vue-hot-reload-api")      .rerender("data-v-79b391aa", module.exports)
   }
 }
+
+/***/ }),
+/* 143 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(3)
+/* script */
+var __vue_script__ = __webpack_require__(145)
+/* template */
+var __vue_template__ = __webpack_require__(144)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/CarritoHeader.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-01a025d0", Component.options)
+  } else {
+    hotAPI.reload("data-v-01a025d0", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 144 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("main", [
+    _c("div", { staticClass: "header-icons" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("span", { staticClass: "linedivide1" }),
+      _vm._v(" "),
+      _c("div", { staticClass: "header-wrapicon2" }, [
+        _c("img", {
+          staticClass: "header-icon1 js-show-header-dropdown",
+          attrs: {
+            src: "/cliente/images/icons/icon-header-02.png",
+            alt: "ICON"
+          },
+          on: {
+            click: function($event) {
+              _vm.abrirCarrito()
+            }
+          }
+        }),
+        _vm._v(" "),
+        _c("span", { staticClass: "header-icons-noti" }, [
+          _vm._v(_vm._s(_vm.count))
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "header-cart header-dropdown",
+            class: {
+              "header-cart header-dropdown show-header-dropdown":
+                _vm.isActiveDrop
+            }
+          },
+          [
+            _c(
+              "ul",
+              { staticClass: "header-cart-wrapitem" },
+              _vm._l(_vm.arrayProducto, function(product) {
+                return _c(
+                  "li",
+                  { key: product.id, staticClass: "header-cart-item" },
+                  [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "header-cart-item-img",
+                        on: {
+                          click: function($event) {
+                            _vm.deleteProduct(product.id)
+                          }
+                        }
+                      },
+                      [
+                        product.attributes.medium
+                          ? _c("img", {
+                              attrs: {
+                                src: "/storage/" + product.attributes.medium,
+                                alt: "IMG"
+                              }
+                            })
+                          : _vm._e(),
+                        _vm._v(" "),
+                        !product.attributes.medium
+                          ? _c("img", {
+                              attrs: {
+                                src: "/cliente/images/item-cart-01.jpg",
+                                alt: "IMG"
+                              }
+                            })
+                          : _vm._e()
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "header-cart-item-txt" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "header-cart-item-name",
+                          attrs: { href: "#" }
+                        },
+                        [
+                          _vm._v(
+                            "\n                                            " +
+                              _vm._s(product.name) +
+                              "\n                                        "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("span", { staticClass: "header-cart-item-info" }, [
+                        _vm._v(
+                          "\n\t\t\t\t\t\t\t\t\t\t\t" +
+                            _vm._s(product.quantity) +
+                            " x S/. " +
+                            _vm._s(product.price) +
+                            "\n\t\t\t\t\t\t\t\t\t\t"
+                        )
+                      ])
+                    ])
+                  ]
+                )
+              })
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "header-cart-total" }, [
+              _vm._v(
+                "\n\t\t\t\t\t\t\t\tS/. " +
+                  _vm._s(_vm.total) +
+                  "\n\t\t\t\t\t\t\t"
+              )
+            ]),
+            _vm._v(" "),
+            _vm._m(1)
+          ]
+        )
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      { staticClass: "header-wrapicon1 dis-block", attrs: { href: "/login" } },
+      [
+        _c("img", {
+          staticClass: "header-icon1",
+          attrs: {
+            src: "/cliente/images/icons/icon-header-01.png",
+            alt: "ICON"
+          }
+        })
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "header-cart-buttons" }, [
+      _c("div", { staticClass: "header-cart-wrapbtn" }, [
+        _c(
+          "a",
+          {
+            staticClass: "flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4",
+            attrs: { href: "/carrito" }
+          },
+          [_vm._v("\n\t\t\t\t\t\t\t\t\t\tVer carrito\n\t\t\t\t\t\t\t\t\t")]
+        )
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-01a025d0", module.exports)
+  }
+}
+
+/***/ }),
+/* 145 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__login_vue__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__login_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__login_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_toastr__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_toastr___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_toastr__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            count: 0,
+            isActiveDrop: false,
+            tabs: [{ key: 1, title: 'tab1', active: true, isvalidate: false }, { key: 2, title: 'tab2', active: false, isvalidate: false }, { key: 3, title: 'tab3', active: false, isvalidate: false }, { key: 4, title: 'tab4', active: false, isvalidate: false }, { key: 5, title: 'tab5', active: false, isvalidate: false }],
+            producto: {},
+            producto_id: 0,
+            idcategoria: 0,
+            nombre_categoria: '',
+            selectedFile: null,
+            total: 0,
+            image: {
+                name: '',
+                url: ''
+            },
+            new_image: {
+                thumbnail: '',
+                medium: '',
+                large: '',
+                full: '',
+                checked: false
+            },
+            arrayProducto: [],
+            errorArticulo: 0,
+            next: false,
+            nameNextPage: "Seguiente",
+            errorMostrarMsjArticulo: [],
+            offset: 3,
+            criterio: 'nombre',
+            buscar: '',
+            arrayCategoria: [],
+            idUser: false,
+            dataUser: []
+        };
+    },
+
+    components: {
+        'login-component': __WEBPACK_IMPORTED_MODULE_0__login_vue___default.a
+    },
+    computed: {
+        isImage: function isImage() {
+            if (!this.image.url == '') {
+                return true;
+            }
+            return false;
+        }
+    },
+    methods: {
+        abrirCarrito: function abrirCarrito() {
+            this.isActiveDrop = !this.isActiveDrop;
+            this.listarProducto();
+        },
+        addSum: function addSum(product) {
+            var _this = this;
+
+            var url = '/action-producto-carrito';
+            axios.post(url, {
+                'producto': product,
+                'accion': 'sum'
+            }).then(function (response) {
+                console.log(response);
+                _this.listarProducto();
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        addRest: function addRest(product) {
+            var _this2 = this;
+
+            var url = '/action-producto-carrito';
+            axios.post(url, {
+                'producto': product,
+                'accion': 'rest'
+            }).then(function (response) {
+                console.log(response);
+                _this2.listarProducto();
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        deleteProduct: function deleteProduct(id) {
+            var _this3 = this;
+
+            var url = '/delete-producto-carrito';
+            axios.post(url, {
+                'id': id
+            }).then(function (response) {
+                _this3.listarProducto();
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        realizarCompra: function realizarCompra() {
+            var _this4 = this;
+
+            var url = '/procesar-compra-producto-carrito';
+            axios.post(url, {}).then(function (response) {
+                __WEBPACK_IMPORTED_MODULE_1_toastr___default.a.success('Comprar realizada', 'Exito');
+                _this4.isTabsActive(0);
+                _this4.idUser = false;
+                _this4.listarProducto();
+            }).catch(function (error) {
+                __WEBPACK_IMPORTED_MODULE_1_toastr___default.a.error('Comprar no realizada', 'Error');
+            });
+        },
+        isTabsActive: function isTabsActive(index) {
+            for (var i = 0; i < this.tabs.length; i++) {
+                this.tabs[i].active = false;
+            }
+            this.tabs[index].active = true;
+        },
+        nextPage: function nextPage() {
+            this.next = !this.next;
+            if (this.next == true) {
+                this.nameNextPage = "Atras";
+            } else {
+                this.nameNextPage = "Seguiente";
+            }
+        },
+        checkedUser: function checkedUser() {
+            var _this5 = this;
+
+            var me = this;
+            var url = '/ckecked-user-login';
+            axios.get(url).then(function (response) {
+
+                if (!response.data.error) {
+                    _this5.dataUser = response.data.data;
+                }
+                _this5.idUser = !response.data.error;
+                console.log(_this5.idUser);
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        guardarDatosVenta: function guardarDatosVenta() {
+            var _this6 = this;
+
+            console.log(this.producto);
+            var url = '/add-producto-carrito';
+            axios.post(url, {
+                'producto': this.producto
+            }).then(function (response) {
+                console.log(response);
+                _this6.producto = [];
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        listarProducto: function listarProducto(page, buscar, criterio) {
+            var _this7 = this;
+
+            var me = this;
+            var url = 'list-producto-carrito';
+            axios.get(url).then(function (response) {
+                _this7.arrayProducto = response.data;
+                var total = 0;
+                var count = 0;
+                console.log(_this7.arrayProducto);
+                for (var product in _this7.arrayProducto) {
+                    total += _this7.arrayProducto[product].price * _this7.arrayProducto[product].quantity;
+                    count++;
+                }
+                _this7.count = count;
+                _this7.total = total;
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+    },
+    mounted: function mounted() {
+        this.listarProducto(1, this.buscar, this.criterio);
+    }
+});
 
 /***/ })
 /******/ ]);

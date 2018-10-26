@@ -28,7 +28,11 @@ class CarritoController extends Controller
             'name' => $request->producto['nombre'],
             'price' => $request->producto['precio'],
             'quantity' => 1,
-            'attributes' => array()
+            'attributes' => array(
+                'image'=>$request->producto['image'],
+                'medium'=>$request->producto['medium'],
+                'large'=>$request->producto['large'],
+            )
         ));
 
         return  json_encode(Cart::getContent());
@@ -78,10 +82,19 @@ class CarritoController extends Controller
             $detalleVenta->save();
         }
         Cart::clear();
-        
+
         return \Response::json(['error'=>false,'message'=>'La compra se realizo con exito','data'=>$ventas]);
 
 
+    }
+    public function eliminarCarts(Request $request){
+        if($request->id){
+            Cart::remove($request->id);
+            return \Response::json(['error'=>false,'message'=>'Se elimino el producto','data'=>$request->id]);
+        }
+        else{
+            return \Response::json(['error'=>true,'message'=>'id null','data'=>null]);
+        }
     }
 
 }
