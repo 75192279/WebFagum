@@ -155,6 +155,20 @@
                     this.nameNextPage="Seguiente"
                 }
             },
+            guardarDatosVenta:function(){
+                console.log(this.producto);
+                var url='/add-producto-carrito';
+                axios.post(url,{
+                    'producto':this.producto,
+                })
+                .then(response=>{
+                    console.log(response);
+                    this.producto=[];
+                })
+                .catch(error=>{
+                    console.log(error);
+                }); 
+            },
             listarProducto (page,buscar,criterio){
                 let me=this;
                 var url= '/producto?page=' + page + '&buscar='+ buscar + '&criterio='+ criterio;

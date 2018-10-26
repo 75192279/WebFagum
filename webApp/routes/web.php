@@ -23,7 +23,12 @@ Route::post('/login-register','Auth\RegisterController@create');
 Route::get('/logout','Auth\LoginController@logout')->name('logout');
 Route::get('/producto', 'ProductoController@index');
 Route::resource('/usuario','UsuarioController');
+Route::post('/add-producto-carrito','CarritoController@AddCart');
+Route::get('/list-producto-carrito','CarritoController@listarCarts');
+Route::get('/ckecked-user-login','CarritoController@checkedUser');
+Route::post('/procesar-compra-producto-carrito','CarritoController@realizarCompra');
 
+Route::post('/action-producto-carrito','CarritoController@actionCart');
 Route::get('/nosotros', function () {
     return view('home.nosotros');
 });
