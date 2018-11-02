@@ -60,6 +60,7 @@ class CarritoController extends Controller
         }
     }
     public function checkedUser(Request $request){
+        //echo json_encode(\Auth::user());
         if(isset(\Auth::user()->id)){
             return \Response::json(['error'=>false,'message'=>'el usuario autenticado','data'=>\Auth::user()]);
         }

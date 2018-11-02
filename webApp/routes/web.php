@@ -17,10 +17,6 @@ Route::get('/carrito', 'HomeController@carrito');
 Route::get('/contacto', 'HomeController@contacto');
 
 
-Route::get('/login','Auth\LoginController@viewLogin')->name('login');
-Route::post('/login-autenticate','Auth\LoginController@login');
-Route::post('/login-register','Auth\RegisterController@create');
-Route::get('/logout','Auth\LoginController@logout')->name('logout');
 Route::get('/producto', 'ProductoController@index');
 Route::resource('/usuario','UsuarioController');
 Route::post('/add-producto-carrito','CarritoController@AddCart');
@@ -33,11 +29,22 @@ Route::post('/action-producto-carrito','CarritoController@actionCart');
 Route::get('/nosotros', function () {
     return view('home.nosotros');
 });
-
+Route::group(['middleware'=>['guest']],function(){
+    Route::get('/login','Auth\LoginController@viewLogin')->name('login');
+    Route::post('/login-autenticate','Auth\LoginController@login');
+    Route::post('/login-register','Auth\RegisterController@create');
+});
+Route::group(['middleware'=>['auth']],function(){
+    Route::get('/logout','Auth\LoginController@logout')->name('logout');
+    Route::post('/payment', 'PaymentController@Payment');
+});
 Route::group(['prefix'=>'users','middleware'=>['auth','cliente']],function(){
     Route::get('/',function(){
         echo "Cliente autenticado";
     });
+    Route::get('/compraclientepayment','PaymentController@compraPayment');
+    Route::get('/compraclientepaymentcomplete','PaymentController@compraPaymentComplete');
+    
 });
 Route::group(['prefix'=>'dashboard','middleware'=>['auth','admin']],function(){
     Route::get('/',function(){

@@ -44,17 +44,6 @@
     import toastr from "toastr";
     import "toastr/build/toastr.css";
     export default {
-        mounted: {
-           isValidateLogin:function(){
-             return false;
-           },
-           isValidateRegister:function(){
-              return false;
-           }
-        },
-        props:{
-          redirect:true,
-        },
         data()
         {
             return {
@@ -71,6 +60,9 @@
                 }
             }
         },
+        props:{
+          'redirects':true,
+        },
         methods:{
             formLogin:function(){
                 this.login= !this.login;
@@ -86,9 +78,10 @@
                 }).then(response=>{
                   var data=response.data;
                   toastr.success(data.usuario, 'Bienvenido');
-                  if(!this.redirect){
+                  if(this.redirects==false){
                       return true;
                   }
+                  console.log(data)
                   switch(data.idRol){
                     case 1:
                       this.redirect("/dashboard");

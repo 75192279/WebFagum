@@ -125,15 +125,10 @@
                 </div>
                 <div v-show="tabs[1].active">
                     <div v-if="idUser==false">
-                        <login-component :redirect="false"></login-component>
+                        <login-component :redirects="false"></login-component>
                     </div>
                     <div v-if="idUser==true">
-                        
-                         <div class="flex-w flex-sb-m p-t-26 p-b-30">
-                            <button @click="realizarCompra()" class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4">
-                                Realizar compra
-                            </button>
-                        </div>
+                        <component-payment :id='1' :precio="total"></component-payment>
                     </div>
                 </div>
 			</div>
@@ -268,13 +263,13 @@
                 let me=this;
                 var url= '/ckecked-user-login';
                 axios.get(url).then(response=>{
-                   
+                   console.log(response);
                     if(!response.data.error){
                         this.dataUser=response.data.data
-                        this.idUser=!response.data.error
+                        this.idUser=true
                     }
                     else{
-                        this.idUser=!response.data.error
+                        this.idUser=false
                         this.checkedLogin();
                     }
                     
@@ -287,13 +282,13 @@
                 let me=this;
                 var url= '/ckecked-user-login';
                 axios.get(url).then(response=>{
-                   
+                        console.log(response);                   
                     if(!response.data.error){
-                        this.dataUser=response.data.data
-                        this.idUser=!response.data.error
+                        this.dataUser=response.data.data;
+                        this.idUser=true;
                     }
                     else{
-                        this.idUser=!response.data.error
+                        this.idUser=false;
                     }
                     
                 })
@@ -311,7 +306,7 @@
                         me.checkedUserSet();
                         console.log('no login');
                     }                
-                },1000);
+                },10000);
             },
             deleteProduct: function(id){
                 var url='/delete-producto-carrito';
@@ -326,7 +321,7 @@
                 })
             },
             guardarDatosVenta:function(){
-                console.log(this.producto);
+
                 var url='/add-producto-carrito';
                 axios.post(url,{
                     'producto':this.producto,
