@@ -8,10 +8,8 @@
                 <!-- Ejemplo de tabla Listado -->
                 <div class="card">
                     <div class="card-header">
-                        <i class="fa fa-align-justify"></i> Ventas
-                        <button type="button" @click="mostrarDetalle()" class="btn btn-secondary">
-                            <i class="icon-plus"></i>&nbsp;Nuevo
-                        </button>
+                        <i class="fa fa-align-justify"></i> Compras
+                        
                     </div>
                     <!-- Listado-->
                     <template v-if="listado==1">
@@ -47,7 +45,7 @@
                                     <tr v-for="venta in arrayVenta" :key="venta.id">
                                         <td>
                                             <button type="button" @click="verVenta(venta.id)" class="btn btn-success btn-sm">
-                                            <i class="icon-eye"></i>
+                                            Ver
                                             </button> &nbsp;
                                             <button type="button" @click="verPdf(venta.id)" class="btn btn-success btn-sm">
                                             Pdf
@@ -504,35 +502,21 @@
         },
         methods : {
             verPdf:function(id){
-                var url='/dashboard/ventaspdf?id='+id;;
+                var url='/users/ventaspdf?id='+id;;
                 window.open(url, this.target, "width=400px,height=400px");
             },
             imprimir: function(){
-                var url='/dashboard/ventaspdf?type=1&&id='+id;
+                var url='/users/ventaspdf?type=1&&id='+id;
                 window.open(url, this.target, "width=400px,height=400px");
                 //window.open(url, this.target, "width=400px,height=400px")
           },
             listarVenta (page,buscar,criterio){
                 let me=this;
-                var url= '/dashboard/venta?page=' + page + '&buscar='+ buscar + '&criterio='+ criterio;
+                var url= '/users/mis-compras-lista?page=' + page + '&buscar='+ buscar + '&criterio='+ criterio;
                 axios.get(url).then(function (response) {
                     var respuesta= response.data;
                     me.arrayVenta = respuesta.ventas.data;
                     me.pagination= respuesta.pagination;
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
-            },
-            selectCliente(search,loading){
-                let me=this;
-                loading(true)
-
-                var url= '/dashboard/cliente/selectCliente?filtro='+search;
-                axios.get(url).then(function (response) {
-                    q: search
-                    me.arrayCliente=response.data;
-                    loading(false)
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -653,7 +637,7 @@
             },
             listarproducto (buscar,criterio){
                 let me=this;
-                var url= '/dashboard/producto/listarProductoVenta?buscar='+ buscar + '&criterio='+ criterio;
+                var url= '/users/producto/listarProductoVenta?buscar='+ buscar + '&criterio='+ criterio;
                 axios.get(url).then(function (response) {
                     var respuesta= response.data;
                     me.arrayproducto = respuesta.productos.data;
@@ -661,67 +645,6 @@
                 .catch(function (error) {
                     console.log(error);
                 });
-            },
-            registrarVenta(){
-                if (this.validarVenta()){
-                    return;
-                }
-                
-                let me = this;
-
-                axios.post('/dashboard/venta/registrar',{
-                    'idcliente': this.idcliente,
-                    'tipo_comprobante': this.tipo_comprobante,
-                    'serie' : this.serie,
-                    'numero' : this.numero,
-                    'monto_cobrar' : this.monto_cobrar,
-                    'total' : this.total,
-                    'data': this.arrayDetalle
-
-                }).then(function (response) {
-                    me.listado=1;
-                    me.listarVenta(1,'','numero');
-                    me.idcliente=0;
-                    me.tipo_comprobante='BOLETA';
-                    me.serie='';
-                    me.numero='';
-                    me.monto_cobrar=0.18;
-                    me.total=0.0;
-                    me.idproducto=0;
-                    me.producto='';
-                    me.cantidad=0;
-                    me.precio=0;
-                    me.stock=0;
-                    me.codigo='';
-                    me.descuento=0;
-                    me.arrayDetalle=[];
-
-                }).catch(function (error) {
-                    console.log(error);
-                });
-            },
-            validarVenta(){
-                let me=this;
-                me.errorVenta=0;
-                me.errorMostrarMsjVenta =[];
-                var art;
-                
-                me.arrayDetalle.map(function(x){
-                    if (x.cantidad>x.stock){
-                        art=x.producto + " con stock insuficiente";
-                        me.errorMostrarMsjVenta.push(art);
-                    }
-                });
-
-                if (me.idcliente==0) me.errorMostrarMsjVenta.push("Seleccione un Cliente");
-                if (me.tipo_comprobante==0) me.errorMostrarMsjVenta.push("Seleccione el comprobante");
-                if (!me.numero) me.errorMostrarMsjVenta.push("Ingrese el número de comprobante");
-                if (!me.monto_cobrar) me.errorMostrarMsjVenta.push("Ingrese el monto_cobrar de compra");
-                if (me.arrayDetalle.length<=0) me.errorMostrarMsjVenta.push("Ingrese detalles");
-
-                if (me.errorMostrarMsjVenta.length) me.errorVenta = 1;
-
-                return me.errorVenta;
             },
             mostrarDetalle(){
                 let me=this;
@@ -748,7 +671,7 @@
                 
                 //Obtener los datos del ingreso
                 var arrayVentaT=[];
-                var url= '/dashboard/venta/obtenerCabecera?id=' + id;
+                var url= '/users/venta/obtenerCabecera?id=' + id;
                 
                 axios.get(url).then(function (response) {
                     var respuesta= response.data;
@@ -766,7 +689,7 @@
                 });
 
                 //Obtener los datos de los detalles 
-                var urld= '/dashboard/venta/obtenerDetalles?id=' + id;
+                var urld= '/users/venta/obtenerDetalles?id=' + id;
                 
                 axios.get(urld).then(function (response) {
                     console.log(response);
@@ -776,15 +699,6 @@
                 .catch(function (error) {
                     console.log(error);
                 });               
-            },
-            cerrarModal(){
-                this.modal=0;
-                this.tituloModal='';
-            }, 
-            abrirModal(){               
-                this.arrayproducto=[];
-                this.modal = 1;
-                this.tituloModal = 'Seleccione uno o varios artículos';
             },
             desactivarVenta(id){
                swal({
@@ -803,7 +717,7 @@
                 if (result.value) {
                     let me = this;
 
-                    axios.put('/dashboard/venta/desactivar',{
+                    axios.put('/users/venta/desactivar',{
                         'id': id
                     }).then(function (response) {
                         me.listarVenta(1,'','numero');

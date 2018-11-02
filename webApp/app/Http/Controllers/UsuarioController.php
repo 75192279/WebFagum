@@ -187,4 +187,23 @@ class UsuarioController extends Controller
         $user->estado = '1';
         $user->save();
     }
+    public function selectCliente(Request $request){
+        $buscar=$request->filtro;
+        if ($buscar==''){
+            $personas = Musuario::join('persona','users.idPersona','=','persona.id')
+            ->join('rol','users.idrol','=','rol.id')
+            ->select('users.id','persona.nombre', 'persona.apellido_paterno', 'persona.apellido_materno', 'persona.fecha_nacimiento', 'persona.genero','persona.tipo_documento','persona.numero_documento','persona.direccion','persona.telefono','users.usuario','users.correo','users.estado','users.idRol','rol.nombre as rol')
+            ->orderBy('persona.id', 'desc')->get();
+        }
+        else{
+            $personas = Musuario::join('persona','users.idPersona','=','persona.id')
+            ->join('rol','users.idRol','=','rol.id')
+            ->select('users.id','persona.nombre', 'persona.apellido_paterno', 'persona.apellido_materno', 'persona.fecha_nacimiento', 'persona.genero','persona.tipo_documento','persona.numero_documento','persona.direccion','persona.telefono','users.usuario','users.correo','users.estado','users.idRol','rol.nombre as rol')
+            ->where('persona.nombre', 'like', '%'. $buscar . '%')
+            ->where('users.usuario', 'like', '%'. $buscar . '%')
+            ->orderBy('id', 'desc')->get();
+            
+        }
+        return json_encode($personas);
+    }
 }

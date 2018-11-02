@@ -52,14 +52,13 @@
 
 				<div class="topbar-child2">
 					<span class="topbar-email">
-						fagum@fagum.com
+						@if(Auth::user())
+							{{Auth::user()->correo}}
+						@endif
 					</span>
-
+					
 					<div class="topbar-language rs1-select2">
-						<select class="selection-1" name="time">
-							<option>S.</option>
-							<option>USD</option>
-						</select>
+						
 					</div>
 				</div>
 			</div>

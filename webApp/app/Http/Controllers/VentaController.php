@@ -1,30 +1,21 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Mventas;
-use Illuminate\Http\Request;
 
-class HomeController extends Controller
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
+use App\Mventas;
+use App\MdetalleVentas;
+use App\MdetailPayment;
+use App\Musuario;
+use App\Mpersona;
+class VentaController extends Controller
 {
-    public function index(Request $request){
-        return view('home.index');
-    }
-    public function producto(Request $request){
-        return view('home.producto');
-    }
-    public function carrito(Request $request){
-        return view('home.carrito');
-    }
-    public function contacto(Request $request){
-        return view('home.contacto');
-    }
-    public function MisCompras(Request $request){
-        return view('home.mis-compras');
-    }
-    public function MisComprasList(Request $request){
+    public function index(Request $request)
+    {
         if (!$request->ajax()) return redirect('/');
 
-        $user = \Auth::user();
         $buscar = $request->buscar;
         $criterio = $request->criterio;
         
@@ -34,7 +25,6 @@ class HomeController extends Controller
             ->select('ventas.id','ventas.tipo_comprobante','ventas.serie',
             'ventas.numero','ventas.monto_cobrar','ventas.total',
             'ventas.estado','persona.nombre','users.usuario')
-            ->where('ventas.id_users',$user->id)
             ->orderBy('ventas.id', 'desc')->paginate(3);
         }
         else{
@@ -43,7 +33,6 @@ class HomeController extends Controller
             ->select('ventas.id','ventas.tipo_comprobante','ventas.serie',
             'ventas.numero','ventas.monto_cobrar','ventas.total',
             'ventas.estado','persona.nombre','users.usuario')
-            ->where('ventas.id_users',$user->id)
             ->where('ventas.'.$criterio, 'like', '%'. $buscar . '%')
             ->orderBy('ventas.id', 'desc')->paginate(3);
         }
@@ -60,7 +49,6 @@ class HomeController extends Controller
             'ventas' => $ventas
         ];
     }
-
     public function obtenerCabecera(Request $request){
         if (!$request->ajax()) return redirect('/');
 
@@ -87,6 +75,76 @@ class HomeController extends Controller
         
         return ['detalles' => $detalles];
     }
+
+    public function store(Request $request)
+    {
+        if (!$request->ajax()) return redirect('/');
+
+        try{
+            DB::beginTransaction();
+
+            $mytime= Carbon::now('America/Lima');
+
+            $ventas=new Mventas();
+            $ventas->tipoPago='Efectivo';
+            $ventas->total=$request->total;
+            $ventas->estado=1;
+            $ventas->monto_cobrar=$request->total;
+            $ventas->tipo_comprobante=$request->tipo_comprobante;
+            $ventas->serie=$request->serie;
+            $ventas->numero= $request->numero;
+            $ventas->tipo_moneda='PEN';
+            $ventas->igv='0';
+            $ventas->gravada='0';
+            $ventas->descuento='0';
+            $ventas->tipo_entrega='0';
+            $ventas->payment_time=$newdate=date("Y-m-d H:i:s");
+            $ventas->id_users=$request->idcliente;;
+            $ventas->save();
+
+            $detalles = $request->data;//Array de detalles
+            //Recorro todos los elementos
+            $payment= new MdetailPayment();
+            $payment->id_venta=$ventas->id;
+            $payment->id_users=$ventas->id_users;
+            $payment->tipo_pago="Efectivo";
+            $payment->total=$request->total;
+            $payment->abono=$request->total;
+            $payment->card_number='0';
+            $payment->email='0';
+            $payment->client_ip='0';
+            $payment->card_brand='0';
+            $payment->card_type='0';
+            $payment->card_category='0';
+            $payment->estado="Pagado";
+            $payment->save();   
+              
+            foreach($detalles as $ep=>$det)
+            {
+                $detalleVenta=new MdetalleVentas();
+                $detalleVenta->idProducto=$det['idproducto'];
+                $detalleVenta->idVenta=$ventas->id;
+                $detalleVenta->cantidad=$det['cantidad'];
+                $detalleVenta->precio=$det['precio'];
+                $detalleVenta->subtotal=$det['cantidad']*$det['precio'];
+                $detalleVenta->save();
+            }
+
+            DB::commit();
+        } catch (Exception $e){
+            DB::rollBack();
+        }
+    }
+
+    public function desactivar(Request $request)
+    {
+        if (!$request->ajax()) return redirect('/');
+        $venta = Mventas::findOrFail($request->id);
+        $venta->estado = 'Anulado';
+        $venta->save();
+    }
+    
+
     public function crearPdfVentas(Request $request){
         $comprobante=Mventas::join('users as us','us.id','id_users')
             ->select('ventas.id','ventas.created_at','id_users','tipo_comprobante','serie','numero','tipo_moneda','total')

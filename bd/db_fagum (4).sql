@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-10-2018 a las 16:34:42
+-- Tiempo de generación: 02-11-2018 a las 22:23:42
 -- Versión del servidor: 10.1.28-MariaDB
 -- Versión de PHP: 7.1.11
 
@@ -50,6 +50,66 @@ INSERT INTO `categoria` (`id`, `nombre`, `descripcion`, `condicion`, `created_at
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `detalle_pago`
+--
+
+CREATE TABLE `detalle_pago` (
+  `id` int(11) NOT NULL,
+  `id_venta` int(11) DEFAULT NULL,
+  `id_users` int(11) DEFAULT NULL,
+  `tipo_pago` varchar(255) COLLATE utf8_spanish2_ci NOT NULL DEFAULT 'tarjeta',
+  `total` double DEFAULT NULL,
+  `abono` double DEFAULT NULL,
+  `estado` varchar(255) COLLATE utf8_spanish2_ci NOT NULL DEFAULT 'Pendiente',
+  `card_number` varchar(16) COLLATE utf8_spanish2_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8_spanish2_ci DEFAULT NULL,
+  `client_ip` varchar(30) COLLATE utf8_spanish2_ci DEFAULT NULL,
+  `card_brand` varchar(50) COLLATE utf8_spanish2_ci DEFAULT NULL,
+  `card_type` varchar(50) COLLATE utf8_spanish2_ci DEFAULT NULL,
+  `card_category` varchar(50) COLLATE utf8_spanish2_ci DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `detalle_pago`
+--
+
+INSERT INTO `detalle_pago` (`id`, `id_venta`, `id_users`, `tipo_pago`, `total`, `abono`, `estado`, `card_number`, `email`, `client_ip`, `card_brand`, `card_type`, `card_category`, `created_at`, `updated_at`) VALUES
+(1, 4, 15, 'Targeta', 245, 245, 'Pagado', '411111******1111', 'jhuaynatesc@gmail.com', '190.232.117.46', 'Visa', 'credito', 'Clásica', '2018-11-02 13:47:21', '2018-11-02 13:47:21'),
+(2, 5, 15, 'Targeta', 245, 245, 'Pagado', '411111******1111', 'jhuaynatesc@gmail.com', '190.232.117.46', 'Visa', 'credito', 'Clásica', '2018-11-02 13:48:31', '2018-11-02 13:48:31'),
+(3, 6, 15, 'Targeta', 368, 368, 'Pagado', '411111******1111', 'jhuaynatesc@gmail.com', '190.232.117.46', 'Visa', 'credito', 'Clásica', '2018-11-02 13:59:27', '2018-11-02 13:59:27'),
+(4, 7, 15, 'Targeta', 368, 368, 'Pagado', '411111******1111', 'jhuaynatesc@gmail.com', '190.232.117.46', 'Visa', 'credito', 'Clásica', '2018-11-02 14:00:21', '2018-11-02 14:00:21'),
+(5, 8, 15, 'Targeta', 123, 123, 'Pagado', '411111******1111', 'jhuaynatesc@gmail.com', '190.232.117.46', 'Visa', 'credito', 'Clásica', '2018-11-02 14:09:30', '2018-11-02 14:09:30'),
+(6, 9, 15, 'Targeta', 123, 123, 'Pagado', '411111******1111', 'jhuaynatesc@gmail.com', '190.232.117.46', 'Visa', 'credito', 'Clásica', '2018-11-02 14:12:22', '2018-11-02 14:12:22'),
+(7, 10, 15, 'Targeta', 123, 123, 'Pagado', '411111******1111', 'jhuaynatesc@gmail.com', '190.232.117.46', 'Visa', 'credito', 'Clásica', '2018-11-02 14:14:39', '2018-11-02 14:14:39'),
+(8, 11, 15, 'Targeta', 123, 123, 'Pagado', '411111******1111', 'jhuaynatesc@gmail.com', '190.232.117.46', 'Visa', 'credito', 'Clásica', '2018-11-02 14:19:50', '2018-11-02 14:19:50'),
+(9, 12, 15, 'Targeta', 123, 123, 'Pagado', '411111******1111', 'jhuaynatesc@gmail.com', '190.232.117.46', 'Visa', 'credito', 'Clásica', '2018-11-02 14:21:43', '2018-11-02 14:21:43'),
+(10, 13, 15, 'Targeta', 123, 123, 'Pagado', '411111******1111', 'jhuaynatesc@gmail.com', '190.232.117.46', 'Visa', 'credito', 'Clásica', '2018-11-02 14:25:57', '2018-11-02 14:25:57'),
+(11, 14, 15, 'Targeta', 123, 123, 'Pagado', '411111******1111', 'brillith@gmail.com', '190.232.117.46', 'Visa', 'credito', 'Clásica', '2018-11-02 14:28:18', '2018-11-02 14:28:18'),
+(12, 15, 15, 'Targeta', 123, 123, 'Pagado', '411111******1111', 'brillith@gmail.com', '190.232.117.46', 'Visa', 'credito', 'Clásica', '2018-11-02 14:30:23', '2018-11-02 14:30:23'),
+(13, 16, 15, 'Targeta', 122, 122, 'Pagado', '411111******1111', 'jhuaynatesc@gmail.com', '190.232.117.46', 'Visa', 'credito', 'Clásica', '2018-11-02 20:36:15', '2018-11-02 20:36:15'),
+(18, 26, 10, 'Efectivo', 122, 122, 'Pagado', '0', '0', '0', '0', '0', '0', '2018-11-03 01:10:15', '2018-11-03 01:10:15');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `detalle_producto`
+--
+
+CREATE TABLE `detalle_producto` (
+  `id` int(11) NOT NULL,
+  `talla` varchar(30) DEFAULT NULL,
+  `color` varchar(10) DEFAULT NULL,
+  `modelo` varchar(50) DEFAULT NULL,
+  `id_producto` int(11) DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `detalle_ventas`
 --
 
@@ -76,7 +136,43 @@ INSERT INTO `detalle_ventas` (`id`, `idProducto`, `cantidad`, `precio`, `subtota
 (5, 9, 1, 123, 123, 2, '2018-10-26 13:14:47', '2018-10-26 13:14:47'),
 (6, 5, 4, 120, 480, 2, '2018-10-26 13:14:47', '2018-10-26 13:14:47'),
 (7, 6, 9, 120, 1080, 2, '2018-10-26 13:14:47', '2018-10-26 13:14:47'),
-(8, 1, 9, 10, 90, 2, '2018-10-26 13:14:47', '2018-10-26 13:14:47');
+(8, 1, 9, 10, 90, 2, '2018-10-26 13:14:47', '2018-10-26 13:14:47'),
+(9, 3, 1, 200, 200, 3, '2018-10-27 01:12:04', '2018-10-27 01:12:04'),
+(10, 4, 1, 120, 120, 3, '2018-10-27 01:12:04', '2018-10-27 01:12:04'),
+(11, 8, 1, 122, 122, 5, '2018-11-02 13:48:31', '2018-11-02 13:48:31'),
+(12, 10, 1, 123, 123, 5, '2018-11-02 13:48:32', '2018-11-02 13:48:32'),
+(13, 10, 1, 123, 123, 7, '2018-11-02 14:00:21', '2018-11-02 14:00:21'),
+(14, 9, 1, 123, 123, 7, '2018-11-02 14:00:21', '2018-11-02 14:00:21'),
+(15, 8, 1, 122, 122, 7, '2018-11-02 14:00:21', '2018-11-02 14:00:21'),
+(16, 9, 1, 123, 123, 8, '2018-11-02 14:09:30', '2018-11-02 14:09:30'),
+(17, 9, 1, 123, 123, 9, '2018-11-02 14:12:22', '2018-11-02 14:12:22'),
+(18, 9, 1, 123, 123, 10, '2018-11-02 14:14:39', '2018-11-02 14:14:39'),
+(19, 9, 1, 123, 123, 11, '2018-11-02 14:19:50', '2018-11-02 14:19:50'),
+(20, 9, 1, 123, 123, 12, '2018-11-02 14:21:43', '2018-11-02 14:21:43'),
+(21, 9, 1, 123, 123, 13, '2018-11-02 14:25:57', '2018-11-02 14:25:57'),
+(22, 9, 1, 123, 123, 14, '2018-11-02 14:28:18', '2018-11-02 14:28:18'),
+(23, 9, 1, 123, 123, 15, '2018-11-02 14:30:23', '2018-11-02 14:30:23'),
+(24, 8, 1, 122, 122, 16, '2018-11-02 20:36:15', '2018-11-02 20:36:15'),
+(25, 8, 1, 122, 122, 26, '2018-11-03 01:10:15', '2018-11-03 01:10:15');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `entrega`
+--
+
+CREATE TABLE `entrega` (
+  `id` int(11) NOT NULL,
+  `id_venta` int(11) DEFAULT NULL,
+  `direccion` varchar(100) DEFAULT NULL,
+  `numero` varchar(10) DEFAULT NULL,
+  `adicionalinfo` varchar(100) DEFAULT NULL,
+  `referencia` varchar(100) DEFAULT NULL,
+  `ubigeo` varchar(10) NOT NULL,
+  `encargado` varchar(255) NOT NULL,
+  `numero_contacto` varchar(20) DEFAULT NULL,
+  `costo` double DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -204,7 +300,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `usuario`, `correo`, `password`, `estado`, `remember_token`, `idRol`, `idPersona`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'admin@gmail.com', '$2y$10$2lIGqEjEz6/xjNrb0rxwpe4fQXs1gw2HUs.xLnfDLQgStpJdSzqmS', 1, 'rgokcH4pyCAr0iAdQDLzqIjQbUVlt0G9JjlxvIew0GgcsevJCGBKMeICrMEP', 1, 1, '2018-09-22 01:12:46', '2018-09-22 01:12:46'),
+(1, 'admin', 'admin@gmail.com', '$2y$10$2lIGqEjEz6/xjNrb0rxwpe4fQXs1gw2HUs.xLnfDLQgStpJdSzqmS', 1, 'pzImzD7OTMxJyPJChEzQp8z4qZSyO2SABDIGNYp6ZYMXiW6Lok1vWyQUyKcY', 1, 1, '2018-09-22 01:12:46', '2018-09-22 01:12:46'),
 (2, 'cliente', 'cliente@gmail.com', '$2y$10$J/xcXS/ifhGuZvPu2kiytOEB8cAbajJ0bG2lRrFirZ65euHgga7TK', 1, NULL, 3, 3, '2018-09-22 05:34:42', '2018-09-28 12:38:51'),
 (9, 'jesucito', 'jesus@gmail.com', '$2y$10$vFkNfmVRo0rqR9Qn2TQXUOyI4oroPvhX1QijVvddV4vX5dA/CP2ym', 1, NULL, 4, 9, '2018-09-28 11:53:54', '2018-09-28 12:23:40'),
 (10, 'juancito', 'jesus@gmail.com', '$2y$10$h0KZGz1gs.K9psrGSYm46.X4th3YmOXcMekqwn6yLVfS6D3K8nP/q', 1, NULL, 2, 10, '2018-09-28 12:05:44', '2018-09-28 12:34:25'),
@@ -212,7 +308,7 @@ INSERT INTO `users` (`id`, `usuario`, `correo`, `password`, `estado`, `remember_
 (12, 'rebeca', 'rebe2@gmail.com', '$2y$10$/tsXDqYh1SKos5Y7FTPfCO2ry1hcXIIb7qb7lbv1jDHdbBkbSYiXy', 0, NULL, 3, 12, '2018-09-29 00:06:40', '2018-09-29 00:06:40'),
 (13, 'juan', 'juan@gmail.com', '$2y$10$8o9VMXg04KsiPIVnKWtmhO5zfGyeOA/7WU5Yz5y1fttuQC2EtyHGe', 0, NULL, 3, 13, '2018-09-29 00:09:52', '2018-09-29 00:09:52'),
 (14, 'Rebeca', 'rebeca@gmail.com', '$2y$10$DA5SSb8Cl4DYPlEJa.ia0eyDM2ecFwLHSEncpdV3nwURFEQcz6f3C', 0, NULL, 3, 14, '2018-09-29 00:10:54', '2018-10-04 01:12:36'),
-(15, 'jhuaynatesc', 'jhuaynatesc@gmail.com', '$2y$10$avqweQYBzv8b2Ud0TtwufunlYX/AxJHz1nA.WDzq.oco.ellP6mv6', 1, NULL, 3, 15, '2018-10-26 12:29:30', '2018-10-26 12:29:30');
+(15, 'jhuaynatesc', 'jhuaynatesc@gmail.com', '$2y$10$2lIGqEjEz6/xjNrb0rxwpe4fQXs1gw2HUs.xLnfDLQgStpJdSzqmS', 1, 'b2B8FKZhEIUY35vgawZKpbE8ydkwH5E9TMNLec6uEm3TZPBtOzjFk2d7dCvD', 3, 15, '2018-10-26 12:29:30', '2018-10-26 12:29:30');
 
 -- --------------------------------------------------------
 
@@ -222,20 +318,46 @@ INSERT INTO `users` (`id`, `usuario`, `correo`, `password`, `estado`, `remember_
 
 CREATE TABLE `ventas` (
   `id` int(11) NOT NULL,
-  `estado` bit(1) NOT NULL DEFAULT b'1',
+  `total` decimal(11,2) DEFAULT NULL,
+  `monto_cobrar` decimal(11,2) DEFAULT NULL,
+  `tipo_comprobante` varchar(5) NOT NULL,
+  `serie` varchar(30) NOT NULL,
+  `numero` varchar(30) DEFAULT NULL,
+  `tipo_moneda` varchar(10) DEFAULT NULL,
+  `igv` double DEFAULT NULL,
+  `gravada` double DEFAULT NULL,
+  `descuento` double DEFAULT NULL,
+  `estado` bit(1) NOT NULL DEFAULT b'0',
+  `tipoPago` varchar(30) DEFAULT NULL,
+  `tipo_entrega` varchar(50) DEFAULT NULL,
+  `payment_time` timestamp NULL DEFAULT NULL,
   `id_users` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `tipoPago` varchar(30) DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `ventas`
 --
 
-INSERT INTO `ventas` (`id`, `estado`, `id_users`, `created_at`, `updated_at`, `tipoPago`) VALUES
-(1, b'1', 15, '2018-10-26 13:08:14', '2018-10-26 13:08:14', 'Efectivo'),
-(2, b'1', 15, '2018-10-26 13:14:47', '2018-10-26 13:14:47', 'Efectivo');
+INSERT INTO `ventas` (`id`, `total`, `monto_cobrar`, `tipo_comprobante`, `serie`, `numero`, `tipo_moneda`, `igv`, `gravada`, `descuento`, `estado`, `tipoPago`, `tipo_entrega`, `payment_time`, `id_users`, `created_at`, `updated_at`) VALUES
+(1, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, b'1', 'Efectivo', NULL, NULL, 15, '2018-10-26 13:08:14', '2018-10-26 13:08:14'),
+(2, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, b'1', 'Efectivo', NULL, NULL, 15, '2018-10-26 13:14:47', '2018-10-26 13:14:47'),
+(3, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, b'1', 'Efectivo', NULL, NULL, 15, '2018-10-27 01:12:03', '2018-10-27 01:12:03'),
+(4, '245.00', '245.00', '03', 'F001', '0001', 'PEN', 0, 0, 0, b'1', 'Targeta', '', '2018-11-02 13:47:21', 15, '2018-11-02 13:47:21', '2018-11-02 13:47:21'),
+(5, '245.00', '245.00', '03', 'F001', '0001', 'PEN', 0, 0, 0, b'1', 'Targeta', '', '2018-11-02 13:48:31', 15, '2018-11-02 13:48:31', '2018-11-02 13:48:31'),
+(6, '368.00', '368.00', '03', 'F001', '0001', 'PEN', 0, 0, 0, b'1', 'Targeta', '0', '2018-11-02 13:59:27', 15, '2018-11-02 13:59:27', '2018-11-02 13:59:27'),
+(7, '368.00', '368.00', '03', 'F001', '0001', 'PEN', 0, 0, 0, b'1', 'Targeta', '0', '2018-11-02 14:00:21', 15, '2018-11-02 14:00:21', '2018-11-02 14:00:21'),
+(8, '123.00', '123.00', '03', 'F001', '0001', 'PEN', 0, 0, 0, b'1', 'Targeta', '0', '2018-11-02 14:09:30', 15, '2018-11-02 14:09:30', '2018-11-02 14:09:30'),
+(9, '123.00', '123.00', '03', 'F001', '0001', 'PEN', 0, 0, 0, b'1', 'Targeta', '0', '2018-11-02 14:12:22', 15, '2018-11-02 14:12:22', '2018-11-02 14:12:22'),
+(10, '123.00', '123.00', '03', 'F001', '0001', 'PEN', 0, 0, 0, b'1', 'Targeta', '0', '2018-11-02 14:14:38', 15, '2018-11-02 14:14:38', '2018-11-02 14:14:38'),
+(11, '123.00', '123.00', '03', 'F001', '0001', 'PEN', 0, 0, 0, b'1', 'Targeta', '0', '2018-11-02 14:19:50', 15, '2018-11-02 14:19:50', '2018-11-02 14:19:50'),
+(12, '123.00', '123.00', '03', 'F001', '0001', 'PEN', 0, 0, 0, b'1', 'Targeta', '0', '2018-11-02 14:21:43', 15, '2018-11-02 14:21:43', '2018-11-02 14:21:43'),
+(13, '123.00', '123.00', '03', 'F001', '0001', 'PEN', 0, 0, 0, b'1', 'Targeta', '0', '2018-11-02 14:25:56', 15, '2018-11-02 14:25:56', '2018-11-02 14:25:56'),
+(14, '123.00', '123.00', '03', 'F001', '0001', 'PEN', 0, 0, 0, b'1', 'Targeta', '0', '2018-11-02 14:28:18', 15, '2018-11-02 14:28:18', '2018-11-02 14:28:18'),
+(15, '123.00', '123.00', '03', 'F001', '0001', 'PEN', 0, 0, 0, b'1', 'Targeta', '0', '2018-11-02 14:30:23', 15, '2018-11-02 14:30:23', '2018-11-02 14:30:23'),
+(16, '122.00', '122.00', '03', 'F001', '0001', 'PEN', 0, 0, 0, b'1', 'Targeta', '1', '2018-11-02 20:36:15', 15, '2018-11-02 20:36:15', '2018-11-02 20:36:15'),
+(26, '122.00', '122.00', '03', 'f002', '786785', 'PEN', 0, 0, 0, b'1', 'Efectivo', '0', '2018-11-03 01:10:15', 10, '2018-11-03 01:10:15', '2018-11-03 01:10:15');
 
 --
 -- Índices para tablas volcadas
@@ -248,9 +370,27 @@ ALTER TABLE `categoria`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `detalle_pago`
+--
+ALTER TABLE `detalle_pago`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `detalle_producto`
+--
+ALTER TABLE `detalle_producto`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `detalle_ventas`
 --
 ALTER TABLE `detalle_ventas`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `entrega`
+--
+ALTER TABLE `entrega`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -294,10 +434,28 @@ ALTER TABLE `categoria`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT de la tabla `detalle_pago`
+--
+ALTER TABLE `detalle_pago`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT de la tabla `detalle_producto`
+--
+ALTER TABLE `detalle_producto`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `detalle_ventas`
 --
 ALTER TABLE `detalle_ventas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+
+--
+-- AUTO_INCREMENT de la tabla `entrega`
+--
+ALTER TABLE `entrega`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `persona`
@@ -327,7 +485,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `ventas`
 --
 ALTER TABLE `ventas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

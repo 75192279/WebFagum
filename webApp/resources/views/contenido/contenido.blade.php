@@ -21,7 +21,7 @@
                         <rol></rol>
                     </template>
                     <template v-if="menu==5">
-                        <h1>Reporte de ventas</h1>
+                        <component-venta></component-venta>
                     </template>
 
                     <template v-if="menu==11">

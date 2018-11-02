@@ -42,8 +42,14 @@ Route::group(['prefix'=>'users','middleware'=>['auth','cliente']],function(){
     Route::get('/',function(){
         echo "Cliente autenticado";
     });
+    Route::get('/ventaspdf', 'VentaController@crearPdfVentas');
+
     Route::get('/compraclientepayment','PaymentController@compraPayment');
     Route::get('/compraclientepaymentcomplete','PaymentController@compraPaymentComplete');
+    Route::get('/mis-compras','HomeController@MisCompras');
+    Route::get('/mis-compras-lista','HomeController@MisComprasList');
+    Route::get('/obtenerCabecera', 'VentaController@obtenerCabecera');
+    Route::get('/venta/obtenerDetalles', 'VentaController@obtenerDetalles');
     
 });
 Route::group(['prefix'=>'dashboard','middleware'=>['auth','admin']],function(){
@@ -67,6 +73,17 @@ Route::group(['prefix'=>'dashboard','middleware'=>['auth','admin']],function(){
     Route::put('/categoria/activar', 'CategoriaController@activar');
     Route::get('/categoria/selectCategoria', 'CategoriaController@selectCategoria');
 
+    
+    Route::get('/ventaspdf', 'VentaController@crearPdfVentas');
+    Route::get('/venta', 'VentaController@index');
+    Route::post('/venta/registrar', 'VentaController@store');
+    Route::put('/venta/desactivar', 'VentaController@desactivar');
+    Route::get('/venta/obtenerCabecera', 'VentaController@obtenerCabecera');
+    Route::get('/venta/obtenerDetalles', 'VentaController@obtenerDetalles');
+    
+    Route::get('/cliente/selectCliente', 'UsuarioController@selectCliente');
+
+
     Route::get('/producto', 'ProductoController@index');
     Route::post('/producto/registrar', 'ProductoController@store');
     Route::put('/producto/actualizar', 'ProductoController@update');
@@ -77,4 +94,6 @@ Route::group(['prefix'=>'dashboard','middleware'=>['auth','admin']],function(){
     Route::get('/producto/buscarProductoVenta', 'ProductoController@buscarProductoVenta');
     Route::get('/producto/listarProductoVenta', 'ProductoController@listarProductoVenta');
     Route::get('/producto/listarPdf', 'ProductoController@listarPdf')->name('productos_pdf');
+
+
 });

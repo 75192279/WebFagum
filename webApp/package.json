@@ -23,6 +23,7 @@
         "moment": "^2.22.2",
         "toastr": "^2.1.4",
         "vue-barcode": "^1.1.0",
-        "vue-image-upload-resize": "^1.1.6"
+        "vue-image-upload-resize": "^1.1.6",
+        "vue-select": "^2.5.1"
     }
 }

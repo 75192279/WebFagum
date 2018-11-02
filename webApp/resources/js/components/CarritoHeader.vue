@@ -1,10 +1,33 @@
 <template>
     <main>
         <div class="header-icons">
-					<a href="/login" class="header-wrapicon1 dis-block">
-						<img src="/cliente/images/icons/icon-header-01.png" class="header-icon1" alt="ICON">
-					</a>
-
+					
+                    <div class="header-wrapicon2">
+						<a v-if="!idUser" href="/login" class="header-wrapicon1 dis-block">
+                            <img src="/cliente/images/icons/icon-header-01.png" class="header-icon1" alt="ICON">
+                        </a>
+                        <img v-if="idUser" src="/cliente/images/icons/icon-header-01.png" @click="abrirUser()"  class="header-icon1 js-show-header-dropdown" alt="ICON">
+						<!-- Header cart noti -->
+						<div class="header-cart header-dropdown" v-bind:class="{'header-cart header-dropdown show-header-dropdown':isActiveDataUser}">
+							<ul class="header-cart-wrapitem">
+                                <div class="">
+									<!-- Button -->
+                                    <a style="widht: 100%" href="#" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
+										Perfil
+									</a>
+                                    <a style="widht: 100%" href="#" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
+										Cambiar contraseña
+									</a>
+                                    <a style="widht: 100%" href="/users/mis-compras" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
+										Mis compras
+									</a>
+									<a style="widht: 100%" href="/logout" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
+										Salir
+									</a>
+								</div>
+							</ul>
+						</div>
+					</div>
 					<span class="linedivide1"></span>
 
 					<div class="header-wrapicon2">
@@ -59,6 +82,7 @@
             return {
                 count:0,
                 isActiveDrop:false,
+                isActiveDataUser:false,
                 tabs:[
                     {key:1,title:'tab1',active:true,isvalidate:false},
                     {key:2,title:'tab2',active:false,isvalidate:false},
@@ -108,6 +132,27 @@
             },
         },
         methods : {
+            abrirUser: function(){
+                this.isActiveDataUser=!this.isActiveDataUser;
+            },
+            checkedUserSet:function(){
+                let me=this;
+                var url= '/ckecked-user-login';
+                axios.get(url).then(response=>{
+                        console.log(response);                   
+                    if(!response.data.error){
+                        this.dataUser=response.data.data;
+                        this.idUser=true;
+                    }
+                    else{
+                        this.idUser=false;
+                    }
+                    
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+            },
             abrirCarrito: function(){
                 this.isActiveDrop=!this.isActiveDrop;
                 this.listarProducto();
@@ -231,6 +276,7 @@
         },
         mounted() {
             this.listarProducto(1,this.buscar,this.criterio);
+            this.checkedUserSet();
         }
     }
 </script>
