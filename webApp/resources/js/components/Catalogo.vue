@@ -24,10 +24,10 @@
                 <div class="col-sm-10 col-md-8 col-lg-4 m-l-r-auto"  v-for="product in arrayProducto" :key="product.id">
                     <!-- block1 -->
                     <div class="block1 hov-img-zoom pos-relative m-b-30">
-                        <img v-bind:src="'/storage/'+product.large" alt="IMG-BENNER">
+                        <img class="Jimg" v-bind:src="'/storage/'+product.large" alt="IMG-BENNER">
                         <div class="block1-wrapbtn w-size2">
                             <!-- Button -->
-                            <a @click="addProducto(product)" data-toggle="modal" data-target="#validar" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
+                            <a @click="addProducto(product)" data-toggle="modal" data-target="#validar" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4 Jbtn">
                                 {{product.nombre}}
                             </a>
                         </div>
@@ -209,3 +209,11 @@
         }
     }
 </script>
+<style>
+    .Jbtn{
+        cursor: pointer;
+    }
+    .Jimg{
+        min-height: 277px;
+    }
+</style>

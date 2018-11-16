@@ -47,7 +47,7 @@
 				</div>
 
 				<span class="topbar-child1">
-				Envío gratis para pedidos estándar de más de $ 100
+				Envío gratis para pedidos estándar de más de S/. 100
 				</span>
 
 				<div class="topbar-child2">
@@ -66,7 +66,7 @@
 			<div class="wrap_header">
 				<!-- Logo -->
 				<a href="index.html" class="logo">
-					<img src="/cliente/images/icons/logo.png" alt="IMG-LOGO">
+					<img style="max-height: 50px" src="/img/logo.png" alt="IMG-LOGO">
 				</a>
 
 				<!-- Menu -->
@@ -76,19 +76,20 @@
 							<li class="sale-noti">
 								<a href="/">Inicio</a>
 							</li>
-
+							{{--
 							<li>
 								<a href="/producto">Tienda</a>
 							</li>
-
+							--}}
+							
 							<li>
 								<a href="/carrito">Carrito</a>
 							</li>
+							{{--
 
 							<li>
 								<a href="cart.html">Caracteristicas</a>
 							</li>
-
 							<li>
 								<a href="blog.html">Blog</a>
 							</li>
@@ -96,6 +97,7 @@
 							<li>
 								<a href="about.html">Acerca de</a>
 							</li>
+							--}}
 
 							<li>
 								<a href="/contacto">Contacto</a>

@@ -70,7 +70,7 @@
 			<catalogo-component></catalogo-component>
 		</div>
 	</section>
-
+	{{--
 	<!-- New Product -->
 	<section class="newproduct bgwhite p-t-45 p-b-105">
 		<div class="container">
@@ -360,6 +360,7 @@
 
 		</div>
 	</section>
+	
 
 	<!-- Banner2 -->
 	<section class="banner2 bg5 p-t-55 p-b-55">
@@ -537,7 +538,7 @@
 			</div>
 		</div>
 	</section>
-
+	--}}
 	<!-- Instagram -->
 	<section class="instagram p-t-20">
 	<!-- Block4
